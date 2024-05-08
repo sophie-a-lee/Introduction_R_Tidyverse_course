@@ -10,4 +10,5 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Introduction to R and RStudio
+
 Here is where my course will be.
