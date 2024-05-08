@@ -8,9 +8,11 @@ Sophie Lee
   RStudio</a>
   - <a href="#11-rstudio-console-window"
     id="toc-11-rstudio-console-window">1.1 RStudio console window</a>
+  - <a href="#exercise-1" id="toc-exercise-1">Exercise 1</a>
 - <a href="#chapter-2-introduction-to-r-programming"
   id="toc-chapter-2-introduction-to-r-programming">Chapter 2: Introduction
   to R programming</a>
+  - <a href="#exercise-2" id="toc-exercise-2">Exercise 2</a>
 - <a href="#chapter-3-r-objects-and-functions"
   id="toc-chapter-3-r-objects-and-functions">Chapter 3: R objects and
   functions</a>
@@ -97,7 +99,7 @@ This window has many potential uses: graphics are displayed and can be
 saved from here, and R help files will appear here. This window is only
 available in the RStudio interface and not in the basic R package.
 
-**Exercise 1**
+### Exercise 1
 
 1.  Open a new script file if you have not already done so.
 
@@ -131,7 +133,7 @@ All standard notation for mathematical calculations (`+, -, *, /, ^`,
 etc.) are compatible with R. At its simplest level, R is a powerful
 calculator.
 
-**Exercise 2**
+### Exercise 2
 
 1.  Add your name and the date to the top of your script file (hint:
     comment this out so R does not try to run it)
