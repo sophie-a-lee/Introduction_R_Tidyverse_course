@@ -1,0 +1,125 @@
+---
+title: "Introduction to R with Tidyverse"
+author: "Sophie Lee"
+date: "`r Sys.Date()`"
+output:   
+  github_document:
+    toc: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Chapter 7: Data preparation and manipulation
+
+### 7.1 Combining multiple datasets
+We may wish to combine and use data from different files within R. For example, in our case we have the core spending power for each year between 2015 and 2020. First, we must read each dataset into R and save them as objects. We could use the ```read_csv``` function for each file separately and create a data frame for each year:
+
+```{r Read in data separately, message=F}
+CSP_2015 <- read_csv("data/CSP_2015.csv")
+
+CSP_2016 <- read_csv("data/CSP_2016.csv")
+```
+
+We can then combine columns from these datasets by joining them using variables which are shared between them. In this case, each local authority has a unique ONS code and naming variable, they also have a region variable which we can include within the join. 
+
+In Tidyverse, there is a family of 'joining' functions that combine two datasets at a time. The choice of function depends on which observations we wish to keep where the joining variables do not match between data. In this example, all local authorities are the same across each year, so we will use ```full_join```. 
+
+```{r full_join 2 datasets}
+csp_201516 <- full_join(CSP_2015, CSP_2016, 
+                        by = c("ons_code", "authority", "region"))
+```
+
+The alternatives to ```full_join``` include ```inner_join```, which only returns a dataset with observations contained in both objects, ```left_join```, where all observations are returned from the first object, whether they are in the second or not, and ```right_join```. where all observations from the second object are returned, whether or not they are in the first. 
+
+Joining functions are useful when combining two objects but requires repetition when joining more than two. To combine all 6 core spending power datasets from 2015 to 2020 in this way would require a lot of code. Instead, we can automate this process by using **functional programming** included in the ```purrr``` package.
+
+The first step requires reading in all csv files by repeatedly applying ```read_csv```. This requires a list of file names from the working directory. The function ```list.files``` introduced earlier contains an optional argument, ```pattern``` which can be used to return files and folders that match a naming pattern. In this case, all csv files begin "CSP_20", so to return this list of names from the *data* folder, we use the function:
+
+```{r List CSP files}
+list.files(path = "data", pattern = "CSP_20")
+```
+
+Next, we must apply ```read_csv``` to each element of the list of file names. The function ```map``` allows us to do this and return a list of tibbles (datasets). As the data lies in a folder in the working directory, we must add this file path to the file names:
+
+```{r List of tibbles, results = 'hide', message = F}
+list.files(path = "data", pattern = "CSP_20") %>% 
+  paste0("data/", .) %>% 
+  map(read_csv)
+```
+
+Finally, we require a function that apply ```full_join``` iteratively to this list of tibbles to reduce it to a single tibble containing core spending powers for all years. The function that does this is ```reduce```:
+
+```{r Reduce core spending power, results = 'hide', message = F}
+csp_201520 <- list.files(path = "data", pattern = "CSP_20") %>% 
+  paste0("data/", .) %>% 
+  map(read_csv) %>% 
+  reduce(full_join, by = c("ons_code", "authority", "region"))
+```
+
+```{r}
+str(csp_201520)
+```
+
+### 7.2 Transforming data
+
+The dataset created above is currently in what is known as **wide format**, this means there is a variable per measure per year. However, for some analyses and visualisations, we may wish to convert this dataset into **long format**, where each row is an observation per year. To convert data between wide and long formats, we can use the Tidyverse functions ```pivot_longer()``` and ```pivot_wider()```.
+
+The first argument required by ````pivot_longer``` is the data object we wish to transform. This is followed by the columns we wish to pivot (in this case, all variable other than the local authority codes, names, and regions). The next steps will depend on the type of data we wish to transform, the values we want to extract, and the variable names themselves. For more examples, type ```vignette("pivot")``` into the R console. 
+
+In this example, we wish to create a row per year and a variable for each stream of funding. Each of the variable names begin with the stream acronym, followed by an underscore and the year. We can break these variables up by specifying multiple column names using the ```names_to``` argument. In this case, the name is taken from the first part of the original variable name (R reads this as ```.value```), we also want a new variable called *year*. The argument ```names_pattern``` tells R which part of the original variable names relate to which variable specified in ```names_to``` (defined within ```()```): 
+
+```{r Long format}
+csp_long <- pivot_longer(csp_201520, 
+                           cols = sfa_2015:rsdg_2020,
+                           names_to = c(".value", "year"),
+                           names_pattern = "(.*)_(.*)")
+```
+
+Our new dataframe has one row per local authority per year and a variable for each of the spending streams. We may wish to calculate the total core spending for each local authority per year and include this as a new variable, ```total_spend```, within the data:
+
+```{r total_spend calculate}
+csp_long2 <- mutate(csp_long, 
+                      total_spend = sfa + under_index + ct_total + nhb + 
+ 	  	     		     nhb_return + rsdg)
+```
+
+### 7.3 Summary tables
+
+The function ```summarise``` allows us to create summary tables from data objects. Without combining ```summarise``` with any other functions, this will compress a data object into a tibble with a single row and a variable per summary. Summary functions that are compatible with ```summarise``` include ```mean, median, quantile, sum, min, max```. Another useful summary is ```n()``` which returns the number of rows the summaries have been calculated over. For a full list of compatible summary functions, view the helpfile ```?summarise```.
+
+If we wanted to summarise the total core spending power between 2015 and 2020 across all local authorities, we can apply ```summarise``` to the long format data from the previous section:
+
+```{r summarise no groups}
+summarise(csp_long2, 
+          total_spend_all = sum(total_spend),
+          mean_total_spend = mean(total_spend),
+          median_total_spend = median(total_spend),
+          quantile10_total_spend = quantile(total_spend, 0.1),
+          total_obs = n())
+```
+
+Combining ```summarise``` with a grouping function, ```group_by``` provides grouped summaries of the data. For example, is we wished to produce a summary table with a row per local authority, summarising the total spending between 2015 and 2020, we would use the following:
+
+```{r group summarise}
+csp_long2 %>% 
+group_by(ons_code, authority) %>% 
+    summarise(total_spend_all = sum(total_spend),
+              mean_total_spend = mean(total_spend),
+          median_total_spend = median(total_spend),
+          quantile10_total_spend = quantile(total_spend, 0.1),
+          total_obs = n()) %>%
+    ungroup()
+
+```
+
+When producing grouped summaries, it is important to ungroup the data after the function has been performed using the ```ungroup``` function. Failure to do this keeps the grouping structure in the object which can slow down future analysis, or can interact with future analyses and produce invalid results.
+
+### Exercise 4
+1.	Create a data frame with the minimum, maximum and median total spend per year for each region. 
+2.	Produce a frequency table containing the number and percentage of local authorities in each region.
+3.	Convert the data object ```csp_long2``` back into wide format, with one row per local authority and one variable per total spend per year (HINT: start by selecting only the variables you need from the long data frame). Use the help file ```?pivot_wider``` and ```vignette("pivot")``` for more hints.
+4.	Using your new wide data frame, calculate the difference in total spending for each local authority between 2015 and 2020. How many local authorities have had an overall reduction in spending since 2015?
+
