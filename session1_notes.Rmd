@@ -55,7 +55,7 @@ This window lists all data and objects currently loaded into R. More details on 
 
 This window has many potential uses: graphics are displayed and can be saved from here, and R help files will appear here. This window is only available in the RStudio interface and not in the basic R package.
 
-### Exercise 1
+## Exercise 1
 
 1.	Open a new script file if you have not already done so.
 
@@ -70,7 +70,7 @@ The choice of brackets in R coding is particularly important as they all have di
 
 All standard notation for mathematical calculations (```+, -, *, /, ^```, etc.) are compatible with R. At its simplest level, R is a powerful calculator.
 
-### Exercise 2
+## Exercise 2
 
 1. Add your name and the date to the top of your script file (hint: comment this out so R does not try to run it)
 

@@ -1,26 +1,19 @@
 Introduction to R with Tidyverse
 ================
 Sophie Lee
-2024-05-08
+2024-05-10
 
-- <a href="#chapter-5-r-packages-and-add-ons"
-  id="toc-chapter-5-r-packages-and-add-ons">Chapter 5: R packages and
-  add-ons</a>
-- <a href="#chapter-6-introduction-to-the-tidyverse-and-data-wrangling"
-  id="toc-chapter-6-introduction-to-the-tidyverse-and-data-wrangling">Chapter
-  6: Introduction to the Tidyverse and data wrangling</a>
-  - <a href="#61-tidyverse" id="toc-61-tidyverse">6.1 Tidyverse</a>
-  - <a href="#62-the-working-directory"
-    id="toc-62-the-working-directory">6.2 The working directory</a>
-  - <a href="#63-data-input" id="toc-63-data-input">6.3 Data input</a>
-  - <a href="#64-selecting-variables" id="toc-64-selecting-variables">6.4
-    Selecting variables</a>
-  - <a href="#65-filtering-data" id="toc-65-filtering-data">6.5 Filtering
-    data</a>
-  - <a href="#66-pipes" id="toc-66-pipes">6.6 Pipes</a>
-  - <a href="#67-adding-new-variables" id="toc-67-adding-new-variables">6.7
-    Adding new variables</a>
-  - <a href="#exercise-3" id="toc-exercise-3">Exercise 3</a>
+- [Chapter 5: R packages and add-ons](#chapter-5-r-packages-and-add-ons)
+- [Chapter 6: Introduction to the Tidyverse and data
+  wrangling](#chapter-6-introduction-to-the-tidyverse-and-data-wrangling)
+  - [6.1 Tidyverse](#61-tidyverse)
+  - [6.2 The working directory](#62-the-working-directory)
+  - [6.3 Data input](#63-data-input)
+  - [6.4 Selecting variables](#64-selecting-variables)
+  - [6.5 Filtering data](#65-filtering-data)
+  - [6.6 Pipes](#66-pipes)
+  - [6.7 Adding new variables](#67-adding-new-variables)
+- [Exercise 3](#exercise-3)
 
 ## Chapter 5: R packages and add-ons
 
@@ -533,7 +526,7 @@ csp_2020_new <- csp_2020 %>%
                            include_lowest = TRUE))
 ```
 
-### Exercise 3
+## Exercise 3
 
 1.  How many local authorities were included in the London region?
 

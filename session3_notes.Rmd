@@ -86,6 +86,13 @@ csp_long2 <- mutate(csp_long,
  	  	     		     nhb_return + rsdg)
 ```
 
+After manipulating and transforming the data into the format we need for analysis and visualisation, we can save this object to reload later. Tibbles and data frame objects can be saved as  csv files using the ```write.csv``` function. Remember to save the data with a different name than the raw data to avoid overwriting these files. 
+
+```{r Save long data}
+write_csv(csp_long2, file = "data/CSP_long_201520.csv")
+```
+
+
 ### 7.3 Summary tables
 
 The function ```summarise``` allows us to create summary tables from data objects. Without combining ```summarise``` with any other functions, this will compress a data object into a tibble with a single row and a variable per summary. Summary functions that are compatible with ```summarise``` include ```mean, median, quantile, sum, min, max```. Another useful summary is ```n()``` which returns the number of rows the summaries have been calculated over. For a full list of compatible summary functions, view the helpfile ```?summarise```.
@@ -117,7 +124,7 @@ group_by(ons_code, authority) %>%
 
 When producing grouped summaries, it is important to ungroup the data after the function has been performed using the ```ungroup``` function. Failure to do this keeps the grouping structure in the object which can slow down future analysis, or can interact with future analyses and produce invalid results.
 
-### Exercise 4
+## Exercise 4
 1.	Create a data frame with the minimum, maximum and median total spend per year for each region. 
 2.	Produce a frequency table containing the number and percentage of local authorities in each region.
 3.	Convert the data object ```csp_long2``` back into wide format, with one row per local authority and one variable per total spend per year (HINT: start by selecting only the variables you need from the long data frame). Use the help file ```?pivot_wider``` and ```vignette("pivot")``` for more hints.

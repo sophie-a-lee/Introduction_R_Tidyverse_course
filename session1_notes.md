@@ -1,24 +1,19 @@
 Introduction to R with Tidyverse
 ================
 Sophie Lee
-2024-05-08
+2024-05-10
 
-- <a href="#chapter-1-introduction-to-rstudio"
-  id="toc-chapter-1-introduction-to-rstudio">Chapter 1: Introduction to
-  RStudio</a>
-  - <a href="#11-rstudio-console-window"
-    id="toc-11-rstudio-console-window">1.1 RStudio console window</a>
-  - <a href="#exercise-1" id="toc-exercise-1">Exercise 1</a>
-- <a href="#chapter-2-introduction-to-r-programming"
-  id="toc-chapter-2-introduction-to-r-programming">Chapter 2: Introduction
-  to R programming</a>
-  - <a href="#exercise-2" id="toc-exercise-2">Exercise 2</a>
-- <a href="#chapter-3-r-objects-and-functions"
-  id="toc-chapter-3-r-objects-and-functions">Chapter 3: R objects and
-  functions</a>
-- <a href="#chapter-4-help-and-error-messages"
-  id="toc-chapter-4-help-and-error-messages">Chapter 4: Help and error
-  messages</a>
+- [Chapter 1: Introduction to
+  RStudio](#chapter-1-introduction-to-rstudio)
+  - [1.1 RStudio console window](#11-rstudio-console-window)
+- [Exercise 1](#exercise-1)
+- [Chapter 2: Introduction to R
+  programming](#chapter-2-introduction-to-r-programming)
+- [Exercise 2](#exercise-2)
+- [Chapter 3: R objects and
+  functions](#chapter-3-r-objects-and-functions)
+- [Chapter 4: Help and error
+  messages](#chapter-4-help-and-error-messages)
 
 ## Chapter 1: Introduction to RStudio
 
@@ -47,7 +42,10 @@ The screenshot below shows the RStudio interface which comprises of four
 windows: the R script file (A), the console (B), environment and history
 (C), and files, packages and help (D).
 
-![RStudio interface](images/rstudio_ide.png)
+<figure>
+<img src="images/rstudio_ide.png" alt="RStudio interface" />
+<figcaption aria-hidden="true">RStudio interface</figcaption>
+</figure>
 
 **Window A: R script files**
 
@@ -99,7 +97,7 @@ This window has many potential uses: graphics are displayed and can be
 saved from here, and R help files will appear here. This window is only
 available in the RStudio interface and not in the basic R package.
 
-### Exercise 1
+## Exercise 1
 
 1.  Open a new script file if you have not already done so.
 
@@ -133,7 +131,7 @@ All standard notation for mathematical calculations (`+, -, *, /, ^`,
 etc.) are compatible with R. At its simplest level, R is a powerful
 calculator.
 
-### Exercise 2
+## Exercise 2
 
 1.  Add your name and the date to the top of your script file (hint:
     comment this out so R does not try to run it)

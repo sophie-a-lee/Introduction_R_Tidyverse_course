@@ -1,14 +1,14 @@
 Introduction to R with Tidyverse
 ================
 Sophie Lee
-2024-05-09
+2024-05-10
 
 - [Chapter 7: Data preparation and
   manipulation](#chapter-7-data-preparation-and-manipulation)
   - [7.1 Combining multiple datasets](#71-combining-multiple-datasets)
   - [7.2 Transforming data](#72-transforming-data)
   - [7.3 Summary tables](#73-summary-tables)
-  - [Exercise 4](#exercise-4)
+- [Exercise 4](#exercise-4)
 
 ## Chapter 7: Data preparation and manipulation
 
@@ -194,6 +194,16 @@ csp_long2 <- mutate(csp_long,
                          nhb_return + rsdg)
 ```
 
+After manipulating and transforming the data into the format we need for
+analysis and visualisation, we can save this object to reload later.
+Tibbles and data frame objects can be saved as csv files using the
+`write.csv` function. Remember to save the data with a different name
+than the raw data to avoid overwriting these files.
+
+``` r
+write_csv(csp_long2, file = "data/CSP_long_201520.csv")
+```
+
 ### 7.3 Summary tables
 
 The function `summarise` allows us to create summary tables from data
@@ -265,7 +275,7 @@ Failure to do this keeps the grouping structure in the object which can
 slow down future analysis, or can interact with future analyses and
 produce invalid results.
 
-### Exercise 4
+## Exercise 4
 
 1.  Create a data frame with the minimum, maximum and median total spend
     per year for each region.
