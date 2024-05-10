@@ -1,5 +1,7 @@
 # Introduction to R with Tidyverse
 
+Next date: 15 - 16 July via [Institute of Statistics and Data Science](https://instats.org/seminar/introduction-to-r-with-tidyverse-2542)
+
 R is a popular open-source programming language used by data scientists, statisticians, social & health researchers, and many more across a wide range of disciplines. R is particularly appealing to researchers as it is free to access, designed to encourage collaborative and reproducible data analysis, and is constantly evolving to include the latest research developments. 
 
 This two-day course is designed to equip attendees across various disciplines with the essential skills to leverage the power of R and Tidyverse for their work. The course begins with a gentle introduction to the user-friendly RStudio interface and the basics of the R coding language, or syntax. This makes it ideal for anyone with little or no prior coding experience, or those looking for a refresher of the basics. 
@@ -13,3 +15,5 @@ Topics covered in this workshop include:
 - Exploratory data analysis and how to create clear summary tables
 - Introduction to RMarkdown to create high quality documents to communicate results
 - Best practices for reproducible research
+
+
