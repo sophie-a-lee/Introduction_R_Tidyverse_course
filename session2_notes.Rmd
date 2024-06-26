@@ -1,239 +1,280 @@
 ---
 title: "Introduction to R with Tidyverse"
-author: "Sophie Lee"
-date: "`r Sys.Date()`"
-output: 
-  github_document:
+author: "Dr. Sophie Lee"
+fontfamily: lmodern
+output:   
+  pdf_document:
     toc: TRUE
-  html_document:
-    toc: TRUE
+    latex_engine: xelatex
+    fig_caption: FALSE
+header-includes:
+    - \usepackage{setspace}\onehalfspacing
+    - \setlength{\parskip}{12pt}
+fontsize: 12pt    
+mainfont: Cambria
+sansfont: Cambria
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+\newpage
+
+# Chapter 4: Opening and exploring data
+
+## 4.1 Styles of R coding
+Up to this point, we have not thought about the style of R coding we will be using. There are different approaches to R coding that we can use, they can be thought of as different dialects of the R programming language. 
+
+The choice of R 'dialect' depends on personal preference. Some prefer to use the 'base R' approach that does not rely on any packages that may need updating, making it a more stable approach. However, base R can be difficult to read for those not comfortable with coding. 
+
+![boyfriend tidyverse meme](images/r_meme.png)
+
+The alternative approach that we will be adopting in this course is the 'tidyverse' approach. Tidyverse is a set of packages that have been designed to make R coding more readable and efficient. They have been designed with reproducibility in mind, which means there is a wealth of online (mostly free), well-written resources available to help use these packages.
+
+If you have not done so already, install the tidyverse packages to your machine using the following code:
+
+```{r install tidyverse, eval = FALSE}
+install.packages('tidyverse')
 ```
 
-## Chapter 5: R packages and add-ons
+**WARNING:** This can take a long time if you have never downloaded the tidyverse packages before as there are many dependencies that are required. Do not stress if you get a lot of text in the console! This is normal, but watch out for any error messages.
 
-R packages are a collection of functions and datasets developed by R users that expand existing base R capabilities or add completely new ones. Packages allow users to apply the most up-to-date methods shortly after they are developed, unlike other statistical software packages that require an entirely new version. The quickest way to install a package in R is:
+Once the tidyverse package is installed, we must load it into the current working session. At the beginning of your script file add the following syntax:
 
-```install.packages(‘name of package’)```
-
-R requires an internet connection to install a package from R's online repository, CRAN. Packages must be downloaded before their first use on a machine and to install any updates that have been made since the last installation. 
-
-Once a package has been installed, use the following code to load it into your R session:
-
-```require(name of package)```
-
-or
-
-```library(name of package)```
-
-Packages must be reloaded every time a new session of R is opened. Therefore, it is good practice to include the ```require``` or ```library``` command at the beginning of a script file. 
-
-All available packages are listed on the [CRAN website](https://cran.r-project.org/web/packages/available_packages_by_name.html) with details of what each one does. Use the ```installed.packages( )``` for a list of all installed packages on your machine.
-
-## Chapter 6: Introduction to the Tidyverse and data wrangling
-
-### 6.1 Tidyverse
-
-Up to this point in the course, we have been using a style of R coding language (or syntax) known as base R, the original version of the language that does not require any additional packages. However, there are different approaches that have been developed within R packages. For example, the Tidyverse set of packages, which aim to improve certain aspects of R syntax. 
-
-The choice of syntax style depends on personal preference. Base R is very stable as it is not dependent on packages which may be updated regularly. However, the Tidyverse set of packages have been developed to make R code more readable and flexible than base R. We will be using a combination of base R and Tidyverse coding style within this course to utilise the extensive data manipulation tools developed for Tidyverse. 
-
-To load tidyverse packages into your R session, run the following code:
-
-```{r Install tidyverse, eval = FALSE}
-install.packages(‘tidyverse') 
-```
-
-```{r Attach tidyverse, warning = FALSE}
-library(tidyverse) 
+```{r load tidyverse, eval = FALSE}
+library(tidyverse)
 ```
 
 
-### 6.2 The working directory
-The working directory is a file path on your computer that R sets as the default location when opening, saving, or exporting documents, files, and graphics. It is possible to specify this location manually but setting the working directory saves time and makes code more efficient. 
+## 4.2 The working directory
+The working directory is a file path on your computer that R sets as the default location when opening, saving, or exporting documents, files, and graphics. This file path can be specified manually but setting the working directory saves time and makes code more efficient. 
 
-To set the working directory, choose *Session -> Set Working Directory -> Change Directory…* from the drop-down menu and select the location you want to act as the directory. These steps must be taken every time R is restarted, otherwise it will be reset to R’s default (usually ‘My Documents’). This can be done using the ```setwd``` function: 
+The working directory can be set manually by using the *Session -> Set Working Directory -> Change Directory…* option from the drop-down menu, or the `setwd` function. Both options require the directory to be specified each time R is restarted, are sensitive to changes in folders within the file path, and cannot be used when script files are shared between colleagues.
 
-```{r Set working directory, eval = FALSE}
-setwd("C://My Documents/Training")
+An alternative approach that overcomes these issues is to create an R project.
+
+### 4.2.1 R projects
+
+R projects are files (saved with the `.Rproj` extension) that keep associated files (including scripts, data, and outputs) grouped together. An R project automatically sets the working directory relative to its current location, which makes collaborative work easier, and avoids issues when a file path is changed.
+
+Projects are created by using the *File -> New project* option from the drop-down menu, or using the ![R project icon](images/project_icon.png) icon from the top-right corner of the RStudio interface. Existing projects can be opened under the *File -> Open project...* drop-down menu or using the project icon. 
+
+When creating a new project, we must choose whether we want to create a new directory or use an existing one. Usually, we will have already set up a folder containing data or other documents related to the analysis we plan to carry out. If this is the case, we are using an existing directory and selecting the analysis folder as the project directory.
+
+## 4.3 Data input
+
+To ensure our code is collaborative and reproducible, we should strive to store data in formats that can be used across multiple platforms. One of the best ways to do this is to store data as a comma-delimited file (.csv). CSV files can be opened by a range of different softwares (including R, SPSS, STATA and excel), and base R can be used to open these files without requiring additional packages. 
+
+Before loading files in R, it is essential to check that they are correctly formatted. Data files should only contain one sheet with no pictures or graphics, each row should correspond to a case or observation and each column should correspond to a variable. 
+
+To avoid any errors arising from spelling mistakes, we can use the `list.files` function to return a list of files and folders from the current working directory. The file names can be copied from the console and pasted into the script file. As the data are saved in a folder within the working directory, we must add the argument `path = ` to specify the folder we want to list files from.
+
+```{r list files}
+list.files(path = "data")
 ```
 
-Sets the working directory to the ‘Training’ folder in ‘My Documents’.
-
-```{r Get working directory, eval = FALSE}
-get(wd)
-```
-
-Returns the current working directory
-
-```{r List files, eval = FALSE}
-list.files( )
-```
-
-Returns a list of all the files that currently exist within your working directory. This is particularly useful when loading datasets from the directory into R as they can be copy and pasted into the script to avoid spelling mistakes and error messages.
-
-#### 6.2.1 RStudio projects
-
-Although working directories can be set manually using the ```setwd``` command, this requires an absolute file path which makes it liable to break easily (for example, if the folder is moved to a different location) and makes it difficult to share code with others. An alternative approach is to use RStudio projects which keeps all associated files, including data, script files and outputs, grouped together. Rather than requiring an absolute file path, *projects* (files with the extension *.Rproj*) set the working directory relative to their location. 
-
-To create a new project, choose *File -> New project…* from the drop-down menu. The project can either be created in a brand-new directory, where a working directory does not already exist, or within an existing directory. Existing projects can be opened by selecting *File -> Open project…* from the drop-down menu. 
-
-RStudio projects help create an efficient workflow by grouping all files necessary for each analysis project together and assists collaboration by setting a working directory relative to the .Rproj files’ location. 
-
-### 6.3 Data input
-
-The easiest way to upload data from excel is to convert it into a comma-delimited file (*.csv*). R has functions that can easily read and convert csv files into objects within the R environment. Before converting files, it is essential to check that they are correctly formatted. Excel files should only contain one sheet of data with no pictures or graphics, each row should correspond to a case or observation and each column should correspond to a variable. 
-
-Once the spreadsheet has been converted into a .csv file, it can be read into R using the ```read_csv``` function. For example, the following code reads in the core spending power report from 2020 from *data* folder of the current working directory and saves it as an object named ```csp_2020```:
+This list should contain 6 CSV files with the core spending power in local authorities in England between 2015 and 2020. We will first load and explore the 2020 data using the `read_csv` function and attaching the data to an object. Remember to add the `data` folder to the file name.
 
 ```{r Read CSP 2020 data}
 csp_2020 <- read_csv("data/CSP_2020.csv")
 ```
 
-If the file is saved somewhere other than the current working directory, the file path would need to be included in the brackets. 
+Imported datasets will appear in the Environment window of the console once they are saved as objects. This Environment also displays the number of variables and observations in each object. To preview the contents of an object, click on its name in the Environment window or use the function `View(data)`. 
 
-This function assumes that the first row of the .csv file contains variable names. If that is not the case, the argument ```col_names = FALSE``` must be added after a comma in the function. 
-
-For full details of the default arguments used in ```read_csv```, search for the help file using the ```?read_csv``` command.
-
-Imported datasets will appear in the Environment window of the console once they are saved as objects. This window shows the number of variables and observations in each object. To view the contents of an object, click on its name in the Environment window or use the function ```View(data)```. Useful functions that help explore a dataset include:
+Other useful functions that help explore a dataset include:
 
 ```{r Variable names}
+# Return variable names from a dataset object
 names(csp_2020)
 ```
 
-Returns a list of variable names
-
-```{r Structure}
+```{r structure}
+# Display information about the structure of an object
 str(csp_2020)
 ```
 
-Displays information about the structure of an object. This differs depending on the type of object entered. For example, this object is a tibble (Tidyverse's name for a dataset). The information given about tibbles includes the object dimensions (396 x 9, or 396 rows and 9 columns), variable names, and variable types.
+Output from the `str` function differs depending on the type of object it is applied to. For example, this object is a `tibble` (`tbl`, Tidyverse's name for a dataset). The information given about tibbles includes the object dimensions (`396 x 9`, or 396 rows and 9 columns), variable names, and variable types.
+
+It is important to check that R has correctly recognised variable type when data are loaded, before generating any visualisations or analysis. If variables are incorrectly specified, this could either lead to errors or invalid analyses. We will see how to change variables types later in this session.
 
 ```{r Head function}
+# Return the first 6 rows of the tibble
 head(csp_2020)
 ```
 
-Returns the first 6 rows of the tibble.
 
 ```{r Tail function}
+# Return the final 6 rows of the tibble.
 tail(csp_2020)
 ```
 
-Returns the final 5 rows of the tibble.
 
-### 6.4 Selecting variables
-There are a number of ways to select individual variables within a dataset within base R or tidyverse.
+## 4.4 Selecting variables
+Often, our analysis will not require every variable in a downloaded dataset, and we may wish to create a smaller analysis tibble. We may also wish to select individual variables from the tibble to apply functions to them without including the entire dataset. 
 
-To select one or more variables using tidyverse, we can use the ```select``` function:
+To select one or more variable and return them as a new tibble, we can use the `select` function from tidyverse's `dplyr` package.
 
-```select(data, variable1, variable2, ...)```
-
-For example, if we wanted to return the new homes bonus (nhb) for each local authority, the seventh column of the dataset, we can either select this based on the variable name or its location in the object:
+For example, if we wanted to return the new homes bonus (`nhb`) for each local authority (the seventh column of the dataset), we can either `select` this based on the variable name or its location in the object:
 
 ```{r Selecting variables}
+# Return the nhb_2020 variable from the csp_2020 object
 select(csp_2020, nhb_2020)
 
+# Return the 7th variable of the csp_2020 object
 select(csp_2020, 7)
 ```
 
 We can select multiple variables and return them as a tibble by separating the variable names or numbers with commas:
 
 ```{r Selecting multiple variables}
+# Return three variables from the csp_2020 object
 select(csp_2020, ons_code, authority, region)
 ```
 
-When selecting consecutive variables, a shortcut can be used that gives the first and last variable in the list, separated by a colon, ```:```. The previous example can be carried out using the following code:
+When selecting consecutive variables, a shortcut can be used that gives the first and last variable in the list, separated by a colon, `:`. The previous example can be carried out using the following code:
 
 ```{r Selecting multiple with colon}
+# Return variables from ons_code upt to and including region
 select(csp_2020, ons_code:region)
 ```
 
-The ```select``` function can be combined with a number of other ‘helper’ functions that allow us to select variables with certain characteristics or naming conventions. For example:
+The `select` function can also be combined with a number of 'selection helper' functions that help us select variables based on naming conventions:
 
-```starts_with("xyz")``` returns all variables where the name begins "xyz".
+`starts_with("xyz")` returns all variables with names beginning `xyz`
+`ends_with("xyz")` returns all variables with names ending `xyz`
+`contains("xyz")` returns all variables that have `xyz` within their name
 
-```ends_with("xyz")``` returns all variables where the name ends "xyz".
+Or based on whether they match a condition:
 
-```everything()``` returns all variables.
+`where(is.numeric)` returns all variables that are classed as numeric
 
-For a full list of selection helpers, checkthe help file ```?tidyr_tidy_select```. 
+For a full list of these selection helpers, access the helpfile using `?tidyr_tidy_select`.
 
-The ```select``` function returns the variable(s) in the form of a tibble (or dataset). However, some functions, such as basic summary functions, require data to be entered as a vector (a list of values). Tibbles with a single variable can be converted into a vector using the ```as.vector``` function, or we can use the base R approach to selecting a single variable which returns the data as a vector by default: 
+The `select` function can also be used to remove variables from a tibble by adding a `-` before the variable name or number. For example:
+
+```{r remove ons_code}
+# Remove the ons_code variable 
+select(csp_2020, -ons_code)
+```
+
+The `select` function returns the variable(s) in the form of a tibble (or dataset). However, some functions, such as basic summary functions, require data to be entered as a `vector` (a list of values). Tibbles with a single variable can be converted into a vector using the `as.vector` function, or we can use the base R approach to selecting a single variable. To return a single variable as a vector in base R, we can use the `$` symbol between the data name and the variable to return:
 
 ```{r Base R selecting, eval = F}
 csp_2020$nhb_2020
 ```
 
-It is important to save any changes made to the existing dataset. This can be done using the ```write_csv``` function:
+It is important to save any changes made to the existing dataset. This can be done using the `write_csv` function:
 
 ```{r Write CSV files, eval = FALSE}
 write_csv(csp_2020, file = "data/csp_2020_new.csv")
 ```
 
-When saving updated data, be sure to give it a different name to the raw data file, otherwise the original data will be overwritten. It is important to keep a copy of the raw data.
+When saving updated tibbles as files, use a different file name to the original raw data. Using the same name will overwrite the original file. We always want a copy of the raw data in case of any errors or issues.
 
 
-### 6.5 Filtering data
+## 4.5 Filtering data
 
-Filtering data allows us to select subgroups based on conditional statements. If the observation meets the conditional statement, it will be returned. The ```filter``` function from the Tidyverse package ```dplyr``` can be used to return these subgroups:
+The `filter` function, from tidyverse's `dplyr` package allows us to return subgroups of the data based on conditional statements. These conditional statements can include mathematical operators, e.g.  `<=` (less than or equal to), `==` (is equal to), and `!=` (is not equal to), or can be based on conditional functions, e.g. `is.na(variable)` (is missing), `between(a, b)` (number lies between a and b). 
 
-```filter(data, condition 1, condition 2, ...)```
+A more comprehensive list of conditional statements can be found in the help file using `?filter`.
 
-Conditional statements include less than ```<```, less than or equal to ```<=```, greater  than ```>```, greater or equal to ```>=```, is equal to ```==```, is not equal to ```!=```, or is missing ```is.na(variable)```. 
-
-For example, to return the core spending power for local authorities in the North West region:
+For example, to return the core spending power for local authorities in the North West region of England, we use the following:
 
 ```{r Filter NW}
+# Return rows where region is equal to NW from the csp_2020 object
 filter(csp_2020, region == "NW")
 ```
 
-We can use multiple conditional statements to filter a subgroup, these statements must be separated in the function using commas. For example, to return a subgroup of local authorities that were in the North West region and had a settlement funding assessment (SFA) of over £40 million, we use the following:
+Multiple conditional statements can be added to the same function by separating them with a comma `,`. For example, to return a subgroup of local authorities in the North West region that had a settlement funding assessment (SFA) of over £40 million, we use the following:
 
 ```{r Filter NW with SFA > 40}
 filter(csp_2020, region == "NW", sfa_2020 > 40)
 ```
 
-### 6.6 Pipes
+## 4.6 Pipes
+When creating an analysis-ready dataset, we often want to combine functions such as `select` and `filter`. Previously, these would need to be carried out separately and a new object would need to be created or overwritten at each step, clogging up the environment. 
 
-The ```filter``` and ```select``` functions can be combined to create an analysis dataset that just contains data we need for our current problem. Rather than carrying out these functions separately and creating multiple objects, we can use a 'pipe'. A pipe is represented be the ```%>%``` symbol and can be read as 'and then' within code. Pipes allow us to carry out multiple steps in the same process whilst ensuring the code is still readable. For example, we can return a list of local authority names from the North West region:
+In tidyverse, we combine multiple functions into a single process by using the 'pipe' symbol `%>%`, which is read as 'and then' within the code.
+
+**Piping hint:** To save time when piping, use the keyboard shortcut *ctrl + shift + m* for Windows and *Command + shift + m* for Mac to create a pipe.
+
+For example, we can return a list of local authority names from the North West region:
 
 ```{r Pipe NW authority names}
+# Using the csp_2020 object
 csp_2020 %>% 
+  # Return just rows where region is equal to NW, and then
   filter(region == "NW") %>% 
+  # Select just the authority variable
   select(authority)
 ```
 
-The pipe can also be combined with the ```filter``` function to ```count``` the number of observations that lie within a subgroup:
+The pipe can also be combined with the `filter` function to `count` the number of observations that lie within a subgroup:
 
 ```{r Count NW region}
+# Take the csp_2020 object
 csp_2020 %>% 
+  # Return just rows where region is equal to NW, and then
   filter(region == "NW") %>% 
+  # Count the number of rows
   count()
 ```
 
-### 6.7 Adding new variables
+## 4.7 Creating new variables
+The function `mutate` from tidyverse's `dplyr` package allows us to add new variables to a dataset, either by manually specifying them or by creating them from existing variables. We can add multiple variables within the same function, separating each with a comma `,`. 
 
-In Tidyverse, the function ```mutate``` allows us to add new variables, either by manually specifying them or by creating them from existing variables. Multiple variables can be created within the same function and are separated by a comma. For example, we can create a new variables with the squared settlement funding assessment, and another that recodes the council tax variable into a categorical variable with three levels (low: below £5 million, medium: between £5 million and £15 million, and high: above £15 million):
+For example, we can create a new variables with the squared settlement funding assessment (`sfa_2020`), and another that recodes the council tax variable (`ct_total_2020`) into a categorical variable with three levels (low: below £5 million, medium: between £5 million and £15 million, and high: above £15 million):
 
 ```{r Mutate function}
+# Create a new object, csp_2020_new, starting with the object csp_2020
 csp_2020_new <- csp_2020 %>% 
+  # Add a new variable, sfa_2020_sq, by squaring the current sfa_2020 variable
   mutate(sfa_2020_sq = sfa_2020 ^ 2,
-         ct_2020_cat = cut(ct_total_2020, breaks = c(0, 5, 15, Inf),
+         # Create ct_2020-cat by cutting the ct_total_2020 object
+         ct_2020_cat = cut(ct_total_2020, 
+                           # Create categories by cutting at 0, 5 and 15
+                           breaks = c(0, 5, 15, Inf),
+                           # Add labels to these new groups
                            labels = c("Low", "Medium", "High"),
+                           # Include the lowest break point in each group
                            include_lowest = TRUE))
 ```
+
+The `mutate` function is also useful for reclassifying variables when R did not correctly choose the variable type. In this example, the `region` variable is a grouping variable, but `str(csp_2020)` shows it is recognised by R as a `character`. Grouping variables in R are known as `factors`. To convert the `region` variable to a `factor`, we use the `factor` function inside `mutate`:
+
+```{r region as factor}
+csp_2020_new <- csp_2020 %>% 
+  # Add a new variable, sfa_2020_sq, by squaring the current sfa_2020 variable
+  mutate(sfa_2020_sq = sfa_2020 ^ 2,
+         # Create ct_2020-cat by cutting the ct_total_2020 object
+         ct_2020_cat = cut(ct_total_2020, 
+                           # Create categories by cutting at 0, 5 and 15
+                           breaks = c(0, 5, 15, Inf),
+                           # Add labels to these new groups
+                           labels = c("Low", "Medium", "High"),
+                           # Include the lowest break point in each group
+                           include_lowest = TRUE),
+         region_fct = factor(region, 
+                             # To order the variable, use the levels argument
+                             levels = c("L", "NW", "NE", "YH", "WM", 
+                                        "EM", "EE", "SW", "SE")))
+
+# Check variables are correctly classified
+str(csp_2020_new)
+```
+
+Although there is no real ordering to the regions in England, attaching this order allows us to control how the are displayed in outputs. By default, character variables are displayed in alphabetical order. By adding the order to this variable, we will produce output where the reference region (London) will be displayed first, followed by regions from north to south.
+
 
 ## Exercise 3
 
 1. How many local authorities were included in the London region?
 
-2. Give three ways that it would be possible to select all spend variables (sfa_2020, nhb_2020, etc.) from the CSP_2020 dataset.
+2. Give three different ways that it would be possible to select all spend variables (sfa_2020, nhb_2020, etc.) from the CSP_2020 dataset.
 
-3. Create a new tibble, ```em_2020```, that just includes local authorities from the East Midlands.
-  - How many local authorities in the East Midlands had an SFA of between £5 and 10 million? (**Hint**: check the ```filter``` help file for a useful helper)
+3. Create a new tibble, `em_2020`, that just includes local authorities from the East Midlands (EM) region.
+  - How many local authorities in the East Midlands had an SFA of between £5 and 10 million?
   - Create a new variable with the total overall spend in 2020 for local authorities in the East Midlands.
 
