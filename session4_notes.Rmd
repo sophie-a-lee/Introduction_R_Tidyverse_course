@@ -1,6 +1,7 @@
 ---
 title: "Introduction to R with Tidyverse"
-author: "Dr. Sophie Lee"
+subtitle: "Session 4: Data visualisation with ggplot2"
+author: "Sophie Lee"
 fontfamily: lmodern
 output:   
   pdf_document:
@@ -15,6 +16,8 @@ header-includes:
 fontsize: 12pt    
 mainfont: Cambria
 sansfont: Cambria
+linkcolor: blue
+url_color: blue
 ---
 
 
@@ -199,7 +202,7 @@ ggplot(csp_nolon_2020) +
   geom_point(aes(x = sfa_2020, y = ct_total_2020, shape = "*"))
 ```
 
-2. Add a line of best fit to the scatterplot showing the relationship between SFA and council tax total (hint: use ```?geom_smooth```).
+2. Add a line of best fit to the scatterplot showing the relationship between SFA and council tax total (hint: use `?geom_smooth`).
 
 3.	Add a line of best fit for each region (hint: make each line a different colour).
 
