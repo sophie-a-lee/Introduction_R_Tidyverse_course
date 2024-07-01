@@ -5,6 +5,7 @@ author: "Sophie Lee"
 fontfamily: lmodern
 output:   
   pdf_document:
+    highlight: tango
     toc: TRUE
     latex_engine: xelatex
     fig_height: 4
@@ -24,7 +25,7 @@ url_color: blue
 ```{r setup, include=FALSE}
 pacman::p_load(flextable, tidyverse)
 
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, message = FALSE)
 
 csp_2020 <- read_csv("data/CSP_2020.csv")
 csp_long2 <- read_csv("data/CSP_long_201520.csv")
@@ -40,7 +41,7 @@ Data visualisation is a powerful tool with multiple important uses. First, visua
 The most appropriate choice of visualisation will depend on the type of variable(s) we wish to display, the number of variables and the message we are trying to disseminate. Common plots used to display combinations of different types of data are given in following table: 
 
 
-```{r Visualisation table, echo = FALSE, message = FALSE}
+```{r Visualisation table, include = FALSE}
 vis_tab <- data.frame(n_vars = c(rep("One variable", 5), rep("Two variables", 5),
                                  rep("> 2 variables", 2)),
                       type_vars = c(rep("Categorical", 2), "Numerical", "Spatial",
@@ -121,7 +122,8 @@ This outlier is the Greater London Authority which is a combination of local aut
 ```{r Scatter without London}
 # Take the csp_2020 data, and then
 csp_2020 %>% 
-  # Return all rows where authority is not equal to Greater London Authority, and then
+  # Return all rows where authority is not equal to Greater London Authority,
+  # and then
   filter(authority != "Greater London Authority") %>% 
   # Generate a plot
   ggplot( ) + 
@@ -190,7 +192,8 @@ Aesthetic properties of the geom object may also be set manually, outside of the
 ```{r Manually setting aesthetics}
 ggplot(csp_nolon_2020_new) + 
   geom_point(aes(x = sfa_2020, y = ct_total_2020), 
-             # Adding the colour outside of the aes wrapper as it is not from the data
+             # Adding the colour outside of the aes wrapper as it is not 
+             # from the data
              colour = "blue")
 ```
 

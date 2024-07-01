@@ -5,6 +5,7 @@ author: "Sophie Lee"
 fontfamily: lmodern
 output:   
   pdf_document:
+    highlight: tango
     toc: TRUE
     latex_engine: xelatex
     fig_caption: FALSE
@@ -19,7 +20,7 @@ url_color: blue
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, message = FALSE)
 
 library(tidyverse)
 ```
@@ -32,7 +33,9 @@ Up to this point, we have not thought about the style of R coding we will be usi
 
 The choice of R 'dialect' depends on personal preference. Some prefer to use the 'base R' approach that does not rely on any packages that may need updating, making it a more stable approach. However, base R can be difficult to read for those not comfortable with coding. 
 
-![boyfriend tidyverse meme](images/r_meme.png)
+```{r boyfriend meme, echo=FALSE, out.width="75%"}
+knitr::include_graphics("images/r_meme.png")
+```
 
 The alternative approach that we will be adopting in this course is the 'tidyverse' approach. Tidyverse is a set of packages that have been designed to make R coding more readable and efficient. They have been designed with reproducibility in mind, which means there is a wealth of online (mostly free), well-written resources available to help use these packages.
 
@@ -145,13 +148,13 @@ select(csp_2020, ons_code:region)
 
 The `select` function can also be combined with a number of 'selection helper' functions that help us select variables based on naming conventions:
 
-`starts_with("xyz")` returns all variables with names beginning `xyz`
-`ends_with("xyz")` returns all variables with names ending `xyz`
-`contains("xyz")` returns all variables that have `xyz` within their name
+- `starts_with("xyz")` returns all variables with names beginning `xyz`
+- `ends_with("xyz")` returns all variables with names ending `xyz`
+- `contains("xyz")` returns all variables that have `xyz` within their name
 
 Or based on whether they match a condition:
 
-`where(is.numeric)` returns all variables that are classed as numeric
+- `where(is.numeric)` returns all variables that are classed as numeric
 
 For a full list of these selection helpers, access the helpfile using `?tidyr_tidy_select`.
 

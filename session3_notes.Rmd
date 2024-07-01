@@ -5,6 +5,7 @@ author: "Sophie Lee"
 fontfamily: lmodern
 output:   
   pdf_document:
+    highlight: tango
     toc: TRUE
     latex_engine: xelatex
     fig_height: 4
@@ -21,7 +22,7 @@ url_color: blue
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, collapse = FALSE, message = FALSE)
 library(tidyverse)
 ```
 \newpage
@@ -96,7 +97,7 @@ csp_201520 <- list.files(path = "data", pattern = "CSP_20") %>%
 
 The dataset containing core spending power in England between 2015 and 2020 is currently in what is known as **wide format**. This means there is a variable per measure per year, making the object very wide. 
 
-Some analyses and visualisations, particularly those used for temporal data, require a time variable in the dataset (for example, year). This requires the data to be in a different format, known as**long format**. Long format is where each row contains an observation per year (making the data much longer and narrower). 
+Some analyses and visualisations, particularly those used for temporal data, require a time variable in the dataset (for example, year). This requires the data to be in a different format, known as **long format**. Long format is where each row contains an observation per year (making the data much longer and narrower). 
 
 To convert data between wide and long formats, we can use the tidyverse functions `pivot_longer` and `pivot_wider`.
 
@@ -113,9 +114,13 @@ Using a combination of the helpfile (`?pivot_longer`) and vignette, the argument
 csp_long <- pivot_longer(csp_201520, 
                          # Pivot columns sfa_2015 up to and including rsdg_2020
                          cols = sfa_2015:rsdg_2020,
-                         # Separate the old variable names in two, keep the prefix as it was, and put the suffix into a new variable, year
+                         # Separate the old variable names in two, 
+                         # keep the prefix as it was, and put the suffix 
+                         # into a new variable, year
                          names_to = c(".value", "year"),
-                         # The name prefix and suffix were separated by an _, the prefix can take different lengths, the suffix is always the final 4 characters
+                         # The name prefix and suffix were separated by an _,
+                         # the prefix can take different lengths, the suffix 
+                         # is always the final 4 characters
                          names_pattern = "(.*)_(....)")
 
 # Check the new, long dataset's structure

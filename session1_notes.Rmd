@@ -5,6 +5,7 @@ author: Sophie Lee
 fontfamily: lmodern
 output:   
   pdf_document:
+    highlight: tango
     toc: TRUE
     latex_engine: xelatex
     fig_height: 4
@@ -21,7 +22,7 @@ url_color: blue
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
 ```
 
 \newpage
@@ -42,7 +43,7 @@ The screenshot below shows the RStudio interface which comprises of four windows
 ![RStudio interface](images/rstudio_ide.png)
 \newpage
 
-#### Window A: R script files
+**Window A: R script files**
 
 All analysis and actions in R are carried out using the R syntax language. R script files allow you to write and edit code before running it in the console window. 
 
@@ -55,31 +56,30 @@ The main advantage of using the script file rather than entering the code direct
 Past script files can be opened using *File -> Open File…* from the drop-down menu or by clicking the ![open icon](images/open_shortcut.png) icon and selecting a `.R` file. The keyboard shortcut to open an existing script file is `Ctrl + o` on Windows, and `Command + o` on Macs.
 
 
-#### Window B: The R console
+**Window B: The R console**
 
 The R console window is where all commands run from the script file, results (other than plots), and messages, such as errors, are displayed. Commands can be written directly into the R console after the `>` symbol and executed using `Enter` on the keyboard. It is not recommended to write code directly into the console as it is cannot be saved or replicated.
 
 Every time a new R session is opened, details about version and citations of R will be given by default. To clear text from the console window, use the keyboard shortcut `control + l` (this is the same for both Windows and Mac users). Be aware that this clears all text from the console, including any results. Before running this command, check that any results can be replicated within the script file. 
 
+\newpage
 
-#### Window C: Environment and history
+**Window C: Environment and history**
 
 This window lists all data and objects currently loaded into R. More details on the types of objects and how to use the Environment window are given in later sections.
 
-#### Window D: Files, plots, packages and help
+**Window D: Files, plots, packages and help**
 
 This window has many potential uses: graphics are displayed and can be saved from here, and R help files will appear here. This window is only available in the RStudio interface and not in the basic R package.
 
 
 ## Exercise 1
-
 1.	Open a new script file if you have not already done so.
 2.	Save this script file into an appropriate location.
 
 \newpage
 
 # Chapter 2: R syntax
-
 All analyses within R are carried out using **syntax**, the R programming language. It is important to note that R is case-sensitive, so always ensure that you use the correct combination of upper and lower case letters when running functions or calling objects.
 
 Any text written in the R console or script file can be treated the same as text from other documents or programmes: text can be highlighted, copied and pasted to make coding more efficient. 
@@ -109,14 +109,13 @@ The choice of brackets in R coding is particularly important as they all have di
 All standard notation for mathematical calculations (`+`, `-`, `*`, `/`, `^`, etc.) are compatible with R. At its simplest level, R is just a very powerful calculator!
 
 ## Exercise 2
-
 1.	Add your name and the date to the top of your script file (hint: comment this out so R does not try to run it)
 2.	Use R to calculate the following calculations. Add the result to the same line of the script file in a way that ensures there are no errors in the code.
   a. $64^2$
   b. $3432 \div 8$
   c. $96 \times 72$
   
-When you have finished this exercise, select the entire script file (using `Ctrl + a` on windows or `Command + a` on Mac) and run it to ensure there are no errors in the code.
+When you have finished this exercise, select the entire script file (using `ctrl + a` on windows or `Command + a` on Mac) and run it to ensure there are no errors in the code.
 
 \newpage
 
@@ -125,17 +124,17 @@ When you have finished this exercise, select the entire script file (using `Ctrl
 ## 3.1 Objects
 One of the main advantages to using R over other software packages such as SPSS is that more than one dataset can be accessed at the same time. A collection of data stored in any format within the R session is known as an **object**. Objects can include single numbers, single variables, entire datasets, lists of datasets, or even tables and graphs.
 
-Objects are defined in R using the `<-` symbol or `=`. For example, 
+Objects are defined in R using the `<-` symbol. For example, 
 
 ```{r assign qone}
 object_1 <- 81
 ```
 
-Creates an object in the environment named `object_1`, which takes the value `81`. This will appear in the environment window of the console (window C from the interface shown in the first chapter).
+Creates an object in the environment named `object_1`, which takes the value `81`. This will appear in the environment window of the console (window C from the interface shown earlier).
 
 To retrieve an object, type its name into the script or console and run it. This object can then be included in functions or operations in place of the value assigned to it:
 
-```{r qone}
+```{r qone, collapse = TRUE}
 object_1
 
 object_1 * 2
