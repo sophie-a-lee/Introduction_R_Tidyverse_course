@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to R with Tidyverse - 3&nbsp; Session 2: Introduction to tidyverse and data wrangling</title>
+<title>Introduction to R with Tidyverse - 2&nbsp; Introduction to tidyverse and data wrangling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -138,12 +138,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://buymeacoffee.com/sophie_a_lee"> <i class="bi bi-cup-hot" role="img" aria-label="Buy me a coffee">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools tools-wide">
-    <a href="https://github.com/sophie-a-lee/Introduction_R_Tidyverse_course" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+          <div class="quarto-navbar-tools">
     <a href="./Introduction-to-R-with-Tidyverse.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-    <a href="https://twitter.com/intent/tweet?url=|url|" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -152,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session2_notes.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 2: Introduction to tidyverse and data wrangling</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session2_notes.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to tidyverse and data wrangling</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -167,39 +170,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome!</span></span></a>
+ <span class="menu-text">Welcome!</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./session1_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 1: Introduction to R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to R and RStudio</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./session2_notes.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 2: Introduction to tidyverse and data wrangling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to tidyverse and data wrangling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./session3_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 3: Data preparation and manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data preparation and manipulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./session4_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 4: Data visualisation with ggplot2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data visualisation with ggplot2</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./session5_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible research with RMarkdown</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reproducible research with RMarkdown</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data description</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise solutions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -210,17 +236,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#opening-and-exploring-data" id="toc-opening-and-exploring-data" class="nav-link active" data-scroll-target="#opening-and-exploring-data"><span class="header-section-number">3.1</span> Opening and exploring data</a>
+  <li><a href="#opening-and-exploring-data" id="toc-opening-and-exploring-data" class="nav-link active" data-scroll-target="#opening-and-exploring-data"><span class="header-section-number">2.1</span> Opening and exploring data</a>
   <ul class="collapse">
-  <li><a href="#styles-of-r-coding" id="toc-styles-of-r-coding" class="nav-link" data-scroll-target="#styles-of-r-coding"><span class="header-section-number">3.1.1</span> Styles of R coding</a></li>
-  <li><a href="#the-working-directory" id="toc-the-working-directory" class="nav-link" data-scroll-target="#the-working-directory"><span class="header-section-number">3.1.2</span> The working directory</a></li>
+  <li><a href="#styles-of-r-coding" id="toc-styles-of-r-coding" class="nav-link" data-scroll-target="#styles-of-r-coding"><span class="header-section-number">2.1.1</span> Styles of R coding</a></li>
+  <li><a href="#the-working-directory" id="toc-the-working-directory" class="nav-link" data-scroll-target="#the-working-directory"><span class="header-section-number">2.1.2</span> The working directory</a></li>
   </ul></li>
-  <li><a href="#data-input" id="toc-data-input" class="nav-link" data-scroll-target="#data-input"><span class="header-section-number">3.2</span> 4.3 Data input</a>
+  <li><a href="#data-input" id="toc-data-input" class="nav-link" data-scroll-target="#data-input"><span class="header-section-number">2.2</span> 4.3 Data input</a>
   <ul class="collapse">
-  <li><a href="#selecting-variables" id="toc-selecting-variables" class="nav-link" data-scroll-target="#selecting-variables"><span class="header-section-number">3.2.1</span> Selecting variables</a></li>
-  <li><a href="#filtering-data" id="toc-filtering-data" class="nav-link" data-scroll-target="#filtering-data"><span class="header-section-number">3.2.2</span> Filtering data</a></li>
-  <li><a href="#pipes" id="toc-pipes" class="nav-link" data-scroll-target="#pipes"><span class="header-section-number">3.2.3</span> Pipes</a></li>
-  <li><a href="#creating-new-variables" id="toc-creating-new-variables" class="nav-link" data-scroll-target="#creating-new-variables"><span class="header-section-number">3.2.4</span> Creating new variables</a></li>
+  <li><a href="#selecting-variables" id="toc-selecting-variables" class="nav-link" data-scroll-target="#selecting-variables"><span class="header-section-number">2.2.1</span> Selecting variables</a></li>
+  <li><a href="#filtering-data" id="toc-filtering-data" class="nav-link" data-scroll-target="#filtering-data"><span class="header-section-number">2.2.2</span> Filtering data</a></li>
+  <li><a href="#pipes" id="toc-pipes" class="nav-link" data-scroll-target="#pipes"><span class="header-section-number">2.2.3</span> Pipes</a></li>
+  <li><a href="#creating-new-variables" id="toc-creating-new-variables" class="nav-link" data-scroll-target="#creating-new-variables"><span class="header-section-number">2.2.4</span> Creating new variables</a></li>
   <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
   </ul></li>
   </ul>
@@ -231,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 2: Introduction to tidyverse and data wrangling</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to tidyverse and data wrangling</span></h1>
 </div>
 
 
@@ -248,10 +274,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="opening-and-exploring-data" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="opening-and-exploring-data"><span class="header-section-number">3.1</span> Opening and exploring data</h2>
-<section id="styles-of-r-coding" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="styles-of-r-coding"><span class="header-section-number">3.1.1</span> Styles of R coding</h3>
+<section id="opening-and-exploring-data" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="opening-and-exploring-data"><span class="header-section-number">2.1</span> Opening and exploring data</h2>
+<section id="styles-of-r-coding" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="styles-of-r-coding"><span class="header-section-number">2.1.1</span> Styles of R coding</h3>
 <p>Up to this point, we have not thought about the style of R coding we will be using. There are different approaches to R coding that we can use, they can be thought of as different dialects of the R programming language.</p>
 <p>The choice of R ‘dialect’ depends on personal preference. Some prefer to use the ‘base R’ approach that does not rely on any packages that may need updating, making it a more stable approach. However, base R can be difficult to read for those not comfortable with coding.</p>
 <div class="cell">
@@ -299,13 +325,13 @@ Style tip
 </div>
 </div>
 </section>
-<section id="the-working-directory" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="the-working-directory"><span class="header-section-number">3.1.2</span> The working directory</h3>
+<section id="the-working-directory" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="the-working-directory"><span class="header-section-number">2.1.2</span> The working directory</h3>
 <p>The working directory is a file path on your computer that R sets as the default location when opening, saving, or exporting documents, files, and graphics. This file path can be specified manually but setting the working directory saves time and makes code more efficient.</p>
 <p>The working directory can be set manually by using the <em>Session -&gt; Set Working Directory -&gt; Change Directory…</em> option from the drop-down menu, or the <code>setwd</code> function. Both options require the directory to be specified each time R is restarted, are sensitive to changes in folders within the file path, and cannot be used when script files are shared between colleagues.</p>
 <p>An alternative approach that overcomes these issues is to create an R project.</p>
-<section id="r-projects" class="level4" data-number="3.1.2.1">
-<h4 data-number="3.1.2.1" class="anchored" data-anchor-id="r-projects"><span class="header-section-number">3.1.2.1</span> R projects</h4>
+<section id="r-projects" class="level4" data-number="2.1.2.1">
+<h4 data-number="2.1.2.1" class="anchored" data-anchor-id="r-projects"><span class="header-section-number">2.1.2.1</span> R projects</h4>
 <p>R projects are files (saved with the <code>.Rproj</code> extension) that keep associated files (including scripts, data, and outputs) grouped together. An R project automatically sets the working directory relative to its current location, which makes collaborative work easier, and avoids issues when a file path is changed.</p>
 <p>Projects are created by using the <em>File -&gt; New project</em> option from the drop-down menu, or using the <img src="images/project_icon.png" class="img-fluid" alt="R project icon"> icon from the top-right corner of the RStudio interface. Existing projects can be opened under the <em>File -&gt; Open project…</em> drop-down menu or using the project icon.</p>
 <p>When creating a new project, we must choose whether we want to create a new directory or use an existing one. Usually, we will have already set up a folder containing data or other documents related to the analysis we plan to carry out. If this is the case, we are using an existing directory and selecting the analysis folder as the project directory.</p>
@@ -325,8 +351,8 @@ Style tip
 </section>
 </section>
 </section>
-<section id="data-input" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="data-input"><span class="header-section-number">3.2</span> 4.3 Data input</h2>
+<section id="data-input" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="data-input"><span class="header-section-number">2.2</span> 4.3 Data input</h2>
 <p>To ensure our code is collaborative and reproducible, we should strive to store data in formats that can be used across multiple platforms. One of the best ways to do this is to store data as a comma-delimited file (.csv). CSV files can be opened by a range of different softwares (including R, SPSS, STATA and excel), and base R can be used to open these files without requiring additional packages.</p>
 <p>Before loading files in R, it is essential to check that they are correctly formatted. Data files should only contain one sheet with no pictures or graphics, each row should correspond to a case or observation and each column should correspond to a variable.</p>
 <p>To avoid any errors arising from spelling mistakes, we can use the <code>list.files</code> function to return a list of files and folders from the current working directory. The file names can be copied from the console and pasted into the script file. As the data are saved in a folder within the working directory, we must add the argument <code>path =</code> to specify the folder we want to list files from.</p>
@@ -419,8 +445,8 @@ Style tip
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 E06000014 York        YH        27.1             1.06          93.8     2.68 </span></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="do">## # ℹ 2 more variables: nhb_return_2020 &lt;dbl&gt;, rsdg_2020 &lt;dbl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="selecting-variables" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="selecting-variables"><span class="header-section-number">3.2.1</span> Selecting variables</h3>
+<section id="selecting-variables" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="selecting-variables"><span class="header-section-number">2.2.1</span> Selecting variables</h3>
 <p>Often, our analysis will not require every variable in a downloaded dataset, and we may wish to create a smaller analysis tibble. We may also wish to select individual variables from the tibble to apply functions to them without including the entire dataset.</p>
 <p>To select one or more variable and return them as a new tibble, we can use the <code>select</code> function from tidyverse’s <code>dplyr</code> package.</p>
 <p>For example, if we wanted to return the new homes bonus (<code>nhb</code>) for each local authority (the seventh column of the dataset), we can either <code>select</code> this based on the variable name or its location in the object:</p>
@@ -550,8 +576,8 @@ Warning
 </div>
 </div>
 </section>
-<section id="filtering-data" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="filtering-data"><span class="header-section-number">3.2.2</span> Filtering data</h3>
+<section id="filtering-data" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="filtering-data"><span class="header-section-number">2.2.2</span> Filtering data</h3>
 <p>The <code>filter</code> function, from tidyverse’s <code>dplyr</code> package allows us to return subgroups of the data based on conditional statements. These conditional statements can include mathematical operators, e.g.&nbsp;<code>&lt;=</code> (less than or equal to), <code>==</code> (is equal to), and <code>!=</code> (is not equal to), or can be based on conditional functions, e.g.&nbsp;<code>is.na(variable)</code> (is missing), <code>between(a, b)</code> (number lies between a and b).</p>
 <p>A more comprehensive list of conditional statements can be found in the help file using <code>?filter</code>.</p>
 <p>For example, to return the core spending power for local authorities in the North West region of England, we use the following:</p>
@@ -594,8 +620,8 @@ Warning
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="do">## # ℹ 2 more variables: nhb_return_2020 &lt;dbl&gt;, rsdg_2020 &lt;dbl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="pipes" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="pipes"><span class="header-section-number">3.2.3</span> Pipes</h3>
+<section id="pipes" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="pipes"><span class="header-section-number">2.2.3</span> Pipes</h3>
 <p>When creating an analysis-ready dataset, we often want to combine functions such as <code>select</code> and <code>filter</code>. Previously, these would need to be carried out separately and a new object would need to be created or overwritten at each step, clogging up the environment.</p>
 <p>In tidyverse, we combine multiple functions into a single process by using the ‘pipe’ symbol <code>%&gt;%</code>, which is read as ‘and then’ within the code.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -661,8 +687,8 @@ Style tips
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 1    46</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="creating-new-variables" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="creating-new-variables"><span class="header-section-number">3.2.4</span> Creating new variables</h3>
+<section id="creating-new-variables" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="creating-new-variables"><span class="header-section-number">2.2.4</span> Creating new variables</h3>
 <p>The function <code>mutate</code> from tidyverse’s <code>dplyr</code> package allows us to add new variables to a dataset, either by manually specifying them or by creating them from existing variables. We can add multiple variables within the same function, separating each with a comma <code>,</code>.</p>
 <p>For example, we can create a new variables with the squared settlement funding assessment (<code>sfa_2020</code>), and another that recodes the council tax variable (<code>ct_total_2020</code>) into a categorical variable with three levels (low: below £5 million, medium: between £5 million and £15 million, and high: above £15 million):</p>
 <div class="cell">
@@ -1156,13 +1182,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./session1_notes.html" class="pagination-link" aria-label="Session 1: Introduction to R and RStudio">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 1: Introduction to R and RStudio</span></span>
+      <a href="./session1_notes.html" class="pagination-link" aria-label="Introduction to R and RStudio">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to R and RStudio</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./session3_notes.html" class="pagination-link" aria-label="Session 3: Data preparation and manipulation">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 3: Data preparation and manipulation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./session3_notes.html" class="pagination-link" aria-label="Data preparation and manipulation">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data preparation and manipulation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
