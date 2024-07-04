@@ -1,4 +1,4 @@
-# Session 3: Data preparation and manipulation
+# Data preparation and manipulation
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = FALSE, message = FALSE)

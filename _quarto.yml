@@ -4,10 +4,8 @@ project:
 book:
   title: "Introduction to R with Tidyverse"
   author: "Sophie Lee"
-  date: "06/15/2024"
-  repo-url: https://github.com/sophie-a-lee/Introduction_R_Tidyverse_course
+  date: "07/15/2024"
   downloads: [pdf]
-  sharing: [twitter]
   navbar:
     right: 
       - icon: github
@@ -19,6 +17,9 @@ book:
       - icon: twitter
         href: https://x.com/SophieStats10
         aria-label: Twitter
+      - icon: cup-hot
+        href: https://buymeacoffee.com/sophie_a_lee
+        aria-label: Buy me a coffee
   chapters:
     - index.qmd
     - session1_notes.qmd
@@ -26,9 +27,9 @@ book:
     - session3_notes.qmd
     - session4_notes.qmd
     - session5_notes.qmd
-appendices: 
-  - data_description.qmd
-  - exercise_solutions.qmd
+  appendices: 
+    - data_description.qmd
+    - exercise_solutions.qmd
 
 format:
   html:

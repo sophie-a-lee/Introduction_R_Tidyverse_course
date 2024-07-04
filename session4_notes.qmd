@@ -1,4 +1,4 @@
-# Session 4: Data visualisation with ggplot2
+# Data visualisation with ggplot2
 
 ```{r setup, include=FALSE}
 pacman::p_load(flextable, tidyverse)

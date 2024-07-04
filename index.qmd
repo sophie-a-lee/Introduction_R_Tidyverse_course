@@ -1,4 +1,4 @@
-# Welcome!
+# Welcome! {.unnumbered}
 
 Welcome to the course materials for the **Introduction to R with Tidyverse** course. 
 
