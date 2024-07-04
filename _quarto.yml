@@ -1,0 +1,40 @@
+project:
+  type: book
+
+book:
+  title: "Introduction to R with Tidyverse"
+  author: "Sophie Lee"
+  date: "06/15/2024"
+  repo-url: https://github.com/sophie-a-lee/Introduction_R_Tidyverse_course
+  downloads: [pdf]
+  sharing: [twitter]
+  navbar:
+    right: 
+      - icon: github
+        href: https://github.com/sophie-a-lee/
+        aria-label: Github
+      - icon: book
+        href: https://scubed.rbind.io/
+        aria-label: Website
+      - icon: twitter
+        href: https://x.com/SophieStats10
+        aria-label: Twitter
+  chapters:
+    - index.qmd
+    - session1_notes.qmd
+    - session2_notes.qmd
+    - session3_notes.qmd
+    - session4_notes.qmd
+    - session5_notes.qmd
+appendices: 
+  - data_description.qmd
+  - exercise_solutions.qmd
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

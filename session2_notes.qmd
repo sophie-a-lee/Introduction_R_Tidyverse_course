@@ -1,34 +1,14 @@
----
-title: "Introduction to R with Tidyverse"
-subtitle: "Session 2: Introduction to tidyverse and data wrangling"
-author: "Sophie Lee"
-fontfamily: lmodern
-output:   
-  pdf_document:
-    highlight: tango
-    toc: TRUE
-    latex_engine: xelatex
-    fig_caption: FALSE
-header-includes:
-    - \usepackage{setspace}\onehalfspacing
-    - \setlength{\parskip}{12pt}
-fontsize: 12pt    
-mainfont: Cambria
-sansfont: Cambria
-linkcolor: blue
-url_color: blue
----
+# Session 2: Introduction to tidyverse and data wrangling
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, message = FALSE)
 
 library(tidyverse)
 ```
-\newpage
 
-# Chapter 4: Opening and exploring data
+## Opening and exploring data
 
-## 4.1 Styles of R coding
+### Styles of R coding
 Up to this point, we have not thought about the style of R coding we will be using. There are different approaches to R coding that we can use, they can be thought of as different dialects of the R programming language. 
 
 The choice of R 'dialect' depends on personal preference. Some prefer to use the 'base R' approach that does not rely on any packages that may need updating, making it a more stable approach. However, base R can be difficult to read for those not comfortable with coding. 
@@ -45,7 +25,9 @@ If you have not done so already, install the tidyverse packages to your machine 
 install.packages('tidyverse')
 ```
 
-**WARNING:** This can take a long time if you have never downloaded the tidyverse packages before as there are many dependencies that are required. Do not stress if you get a lot of text in the console! This is normal, but watch out for any error messages.
+:::{.callout-warning}
+This can take a long time if you have never downloaded the tidyverse packages before as there are many dependencies that are required. Do not stress if you get a lot of text in the console! This is normal, but watch out for any error messages.
+:::
 
 Once the tidyverse package is installed, we must load it into the current working session. At the beginning of your script file add the following syntax:
 
@@ -53,21 +35,32 @@ Once the tidyverse package is installed, we must load it into the current workin
 library(tidyverse)
 ```
 
+:::{.callout-tip}
+### Style tip
 
-## 4.2 The working directory
+Begin every script file with the `library` command, loading packages in before any data. This avoids any potential errors arising where functions are called before the necessary package has been loaded into the current session.
+:::
+
+### The working directory
 The working directory is a file path on your computer that R sets as the default location when opening, saving, or exporting documents, files, and graphics. This file path can be specified manually but setting the working directory saves time and makes code more efficient. 
 
 The working directory can be set manually by using the *Session -> Set Working Directory -> Change Directory…* option from the drop-down menu, or the `setwd` function. Both options require the directory to be specified each time R is restarted, are sensitive to changes in folders within the file path, and cannot be used when script files are shared between colleagues.
 
 An alternative approach that overcomes these issues is to create an R project.
 
-### 4.2.1 R projects
+#### R projects
 
 R projects are files (saved with the `.Rproj` extension) that keep associated files (including scripts, data, and outputs) grouped together. An R project automatically sets the working directory relative to its current location, which makes collaborative work easier, and avoids issues when a file path is changed.
 
 Projects are created by using the *File -> New project* option from the drop-down menu, or using the ![R project icon](images/project_icon.png) icon from the top-right corner of the RStudio interface. Existing projects can be opened under the *File -> Open project...* drop-down menu or using the project icon. 
 
 When creating a new project, we must choose whether we want to create a new directory or use an existing one. Usually, we will have already set up a folder containing data or other documents related to the analysis we plan to carry out. If this is the case, we are using an existing directory and selecting the analysis folder as the project directory.
+
+:::{.callout-tip}
+### Style tip
+
+Have a clear order to your analysis folder. Consider creating separate folders within a project for input and output data, documentation, and outputs such as graphs or tables.
+:::
 
 ## 4.3 Data input
 
@@ -96,6 +89,12 @@ Other useful functions that help explore a dataset include:
 names(csp_2020)
 ```
 
+:::{.callout-tip}
+### Style tip
+
+Variable names should follow the same style rules as object names: only contain lower case letters, numbers, and use `_` to separate words. They should be meaningful and concise.
+:::
+
 ```{r structure}
 # Display information about the structure of an object
 str(csp_2020)
@@ -117,7 +116,7 @@ tail(csp_2020)
 ```
 
 
-## 4.4 Selecting variables
+### Selecting variables
 Often, our analysis will not require every variable in a downloaded dataset, and we may wish to create a smaller analysis tibble. We may also wish to select individual variables from the tibble to apply functions to them without including the entire dataset. 
 
 To select one or more variable and return them as a new tibble, we can use the `select` function from tidyverse's `dplyr` package.
@@ -177,10 +176,11 @@ It is important to save any changes made to the existing dataset. This can be do
 write_csv(csp_2020, file = "data/csp_2020_new.csv")
 ```
 
+:::{.callout-warning}
 When saving updated tibbles as files, use a different file name to the original raw data. Using the same name will overwrite the original file. We always want a copy of the raw data in case of any errors or issues.
+:::
 
-
-## 4.5 Filtering data
+### Filtering data
 
 The `filter` function, from tidyverse's `dplyr` package allows us to return subgroups of the data based on conditional statements. These conditional statements can include mathematical operators, e.g.  `<=` (less than or equal to), `==` (is equal to), and `!=` (is not equal to), or can be based on conditional functions, e.g. `is.na(variable)` (is missing), `between(a, b)` (number lies between a and b). 
 
@@ -199,12 +199,16 @@ Multiple conditional statements can be added to the same function by separating 
 filter(csp_2020, region == "NW", sfa_2020 > 40)
 ```
 
-## 4.6 Pipes
+### Pipes
 When creating an analysis-ready dataset, we often want to combine functions such as `select` and `filter`. Previously, these would need to be carried out separately and a new object would need to be created or overwritten at each step, clogging up the environment. 
 
 In tidyverse, we combine multiple functions into a single process by using the 'pipe' symbol `%>%`, which is read as 'and then' within the code.
 
-**Piping hint:** To save time when piping, use the keyboard shortcut *ctrl + shift + m* for Windows and *Command + shift + m* for Mac to create a pipe.
+:::{.callout-note}
+### Helpful hint
+
+ To save time when piping, use the keyboard shortcut *ctrl + shift + m* for Windows, and *Command + shift + m* for Mac to create a pipe.
+:::
 
 For example, we can return a list of local authority names from the North West region:
 
@@ -217,6 +221,12 @@ csp_2020 %>%
   select(authority)
 ```
 
+:::{.callout-tip}
+### Style tips
+
+When combining multiple functions within a process using pipes, it is good practice to start the code with the data and pipe that into the functions, rather than including it in the function itself.
+:::
+
 The pipe can also be combined with the `filter` function to `count` the number of observations that lie within a subgroup:
 
 ```{r Count NW region}
@@ -228,7 +238,7 @@ csp_2020 %>%
   count()
 ```
 
-## 4.7 Creating new variables
+### Creating new variables
 The function `mutate` from tidyverse's `dplyr` package allows us to add new variables to a dataset, either by manually specifying them or by creating them from existing variables. We can add multiple variables within the same function, separating each with a comma `,`. 
 
 For example, we can create a new variables with the squared settlement funding assessment (`sfa_2020`), and another that recodes the council tax variable (`ct_total_2020`) into a categorical variable with three levels (low: below £5 million, medium: between £5 million and £15 million, and high: above £15 million):
@@ -247,6 +257,12 @@ csp_2020_new <- csp_2020 %>%
                            # Include the lowest break point in each group
                            include_lowest = TRUE))
 ```
+
+:::{.callout-note}
+### Helpful hint
+
+The `c` function takes a list of values separated by commas and returns them as a `vector`. This is useful when a function argument requires multiple values (and we don't want R to move onto the next argument, which is what a comma inside functions usually means).
+:::
 
 The `mutate` function is also useful for reclassifying variables when R did not correctly choose the variable type. In this example, the `region` variable is a grouping variable, but `str(csp_2020)` shows it is recognised by R as a `character`. Grouping variables in R are known as `factors`. To convert the `region` variable to a `factor`, we use the `factor` function inside `mutate`:
 
@@ -273,8 +289,7 @@ str(csp_2020_new)
 
 Although there is no real ordering to the regions in England, attaching this order allows us to control how the are displayed in outputs. By default, character variables are displayed in alphabetical order. By adding the order to this variable, we will produce output where the reference region (London) will be displayed first, followed by regions from north to south.
 
-
-## Exercise 3
+### Exercise 3 {.unnumbered}
 
 1. How many local authorities were included in the London region?
 

@@ -1,33 +1,10 @@
----
-title: "Introduction to R with Tidyverse"
-subtitle: "Session 1: Introduction to R and RStudio"
-author: Sophie Lee
-fontfamily: lmodern
-output:   
-  pdf_document:
-    highlight: tango
-    toc: TRUE
-    latex_engine: xelatex
-    fig_height: 4
-    fig_width: 6
-    fig_caption: FALSE
-header-includes:
-    - \usepackage{setspace}\onehalfspacing
-    - \setlength{\parskip}{12pt}
-fontsize: 12pt    
-mainfont: Cambria
-sansfont: Cambria
-linkcolor: blue
-url_color: blue
----
+# Session 1: Introduction to R and RStudio
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
 ```
 
-\newpage
-
-# Chapter 1: The RStudio interface
+## The RStudio interface
 
 There are a number of software packages based on the R programming language aimed at making writing and running analyses easier for users. They all run R in the background but look different and contain different features. 
 
@@ -37,21 +14,36 @@ Before installing RStudio, we must ensure that R is downloaded onto the machine.
 
 Rstudio is also free to download from the [**Posit**](https://posit.co/) website.
 
-### 1.1 The RStudio console window
+#### The RStudio console window
 The screenshot below shows the RStudio interface which comprises of four windows: 
 
 ![RStudio interface](images/rstudio_ide.png)
-\newpage
 
 **Window A: R script files**
 
 All analysis and actions in R are carried out using the R syntax language. R script files allow you to write and edit code before running it in the console window. 
+
+:::{.callout-tip}
+### Style tip
+
+Limit script files to 80 characters per line to ensure it is readable. 
+
+RStudio has an option to add a margin that makes this easier to adhere to. Under the *Tools* drop-down menu, select *Global options*. Select *Code* from the list on the right, then under the *Display* tab, tick the *Show margin* box.
+:::
 
 If this window is not visible, create a new script file using *File -> New File -> R Script* from the drop-down menus or clicking the ![New file icon](images/new_file_shortcut.png) icon above the console and selecting *R Script*. This will open a new, blank script file. More than one script file can be open at the same time.
 
 Code entered into the script file does not run automatically. To run commands from the script, highlight the code and click the ![Run icon](images/run_shortcut.png) icon above the top right corner of the script window (this can be carried out by pressing `Ctrl + Enter` in Windows or `Command + Enter` on a Mac computer). More than one command can be run at the same time by highlighting all of them.
 
 The main advantage of using the script file rather than entering the code directly into the console is that it can be saved, edited and shared. To save a script file, use *File -> Save As…* from the drop down menu, or click the ![save icon](images/save_shortcut.png) icon at the top of the window. It is important to save the script files at regular intervals to avoid losing work. Once the script file has been saved, we can also use the keyboard shortcuts `Ctrl + s` on Windows and `Command + s` on Mac to save the latest script file.
+
+:::{.callout-tip}
+### Style tip
+
+Script file names should be meaningful, lower case, and end in `.R`. Avoid using special characters in file names, including spaces. Use `_` instead of spaces.
+
+Where files should be run in a specific order, prefix the file name with numbers.
+:::
 
 Past script files can be opened using *File -> Open File…* from the drop-down menu or by clicking the ![open icon](images/open_shortcut.png) icon and selecting a `.R` file. The keyboard shortcut to open an existing script file is `Ctrl + o` on Windows, and `Command + o` on Macs.
 
@@ -62,7 +54,6 @@ The R console window is where all commands run from the script file, results (ot
 
 Every time a new R session is opened, details about version and citations of R will be given by default. To clear text from the console window, use the keyboard shortcut `control + l` (this is the same for both Windows and Mac users). Be aware that this clears all text from the console, including any results. Before running this command, check that any results can be replicated within the script file. 
 
-\newpage
 
 **Window C: Environment and history**
 
@@ -73,32 +64,38 @@ This window lists all data and objects currently loaded into R. More details on 
 This window has many potential uses: graphics are displayed and can be saved from here, and R help files will appear here. This window is only available in the RStudio interface and not in the basic R package.
 
 
-## Exercise 1
+### Exercise 1 {.unnumbered}
 1.	Open a new script file if you have not already done so.
 2.	Save this script file into an appropriate location.
 
-\newpage
 
-# Chapter 2: R syntax
+## R syntax
 All analyses within R are carried out using **syntax**, the R programming language. It is important to note that R is case-sensitive, so always ensure that you use the correct combination of upper and lower case letters when running functions or calling objects.
 
 Any text written in the R console or script file can be treated the same as text from other documents or programmes: text can be highlighted, copied and pasted to make coding more efficient. 
 
 When creating script files, it is important to ensure they are clear and easy to read. Comments can be added to script files using the `#` symbol. R will ignore any text following the `#` on the same line. 
 
-**Hash tip 1:** Combining `#` and `-` creates sections within a script file, making them easier to navigate and organise. 
+::: {.callout-tip}
+### Style tip
+
+Combining `#` and `-` creates sections within a script file, making them easier to navigate and organise. 
 
 For example:
 
-```{r section style, eval = FALSE}
+```{r section style}
 # Load data ----------
 
 # Tidy data ----------
 ```
+:::
 
-These section headings will be listed at the bottom of the script file window. Selecting one of these headings from the list will send your cursor to the section heading.
 
-**Hash tip 2:** To comment out chunks of code, highlight the rows and use the keyboard shortcut `ctrl + shift + c` on Windows, and `Command + shift + c` on Mac.
+:::{.callout-note}
+### Helpful hint
+
+To comment out chunks of code, highlight the rows and use the keyboard shortcut *ctrl + shift + c* on Windows, and *Command + shift + c* on Mac
+:::
 
 The choice of brackets in R coding is particularly important as they all have different functions:
 
@@ -108,7 +105,25 @@ The choice of brackets in R coding is particularly important as they all have di
 
 All standard notation for mathematical calculations (`+`, `-`, `*`, `/`, `^`, etc.) are compatible with R. At its simplest level, R is just a very powerful calculator!
 
-## Exercise 2
+::: {.callout-tip}
+### Style tip
+
+Although R will work whether a space is added before/after a mathematical operator, the [style guide](https://style.tidyverse.org/syntax.html) recommends to add them surrounding most mathematical operations (`+`, `-`, `*`, `/`), but not around `^`. 
+
+For example:
+
+```{r space style, eval = FALSE}
+# Stylish code
+1959 - 683
+(351 + 457)^2 - (213 + 169)^2
+
+# Un-stylish code
+1959-683
+(351+457)^2 - (213 + 169) ^ 2
+```
+:::
+
+### Exercise 2 {.unnumbered}
 1.	Add your name and the date to the top of your script file (hint: comment this out so R does not try to run it)
 2.	Use R to calculate the following calculations. Add the result to the same line of the script file in a way that ensures there are no errors in the code.
   a. $64^2$
@@ -117,20 +132,30 @@ All standard notation for mathematical calculations (`+`, `-`, `*`, `/`, `^`, et
   
 When you have finished this exercise, select the entire script file (using `ctrl + a` on windows or `Command + a` on Mac) and run it to ensure there are no errors in the code.
 
-\newpage
+## R objects and functions
 
-# Chapter 3: R objects and functions
-
-## 3.1 Objects
+### Objects
 One of the main advantages to using R over other software packages such as SPSS is that more than one dataset can be accessed at the same time. A collection of data stored in any format within the R session is known as an **object**. Objects can include single numbers, single variables, entire datasets, lists of datasets, or even tables and graphs.
 
-Objects are defined in R using the `<-` symbol. For example, 
+:::{.callout-tip}
+### Style tip
+
+Object names should only contain lower case letters, numbers and `_` (instead of a space to separate words). The should be meaningful and concise.
+:::
+
+Objects are defined in R using the `<-` or `=` symbols. For example, 
 
 ```{r assign qone}
 object_1 <- 81
 ```
 
 Creates an object in the environment named `object_1`, which takes the value `81`. This will appear in the environment window of the console (window C from the interface shown earlier).
+
+:::{.callout-tip}
+### Style tip
+
+Although both work, use `<-` for assignment, not `=`.
+:::
 
 To retrieve an object, type its name into the script or console and run it. This object can then be included in functions or operations in place of the value assigned to it:
 
@@ -150,11 +175,11 @@ The `[1]` that appears at the beginning of each output line indicates that this 
 
 For example, if we had an object with 6 elements and when called the first line contained the first 5 elements, each line would begin with `[1]` and `[6]` respectively.
 
-## 3.2 Functions
+### Functions
 
 **Functions** are built-in commands that allow R users to run analyses. All functions require the definition of arguments within round brackets `()`. Each function requires different information and has different arguments that can be used to customise the analysis. A detailed list of these arguments and a description of the function can be found in the function's associated **help file**.
 
-## 3.3 Help files
+### Help files
 
 Each function that exists within R has an associated help file. RStudio does not require an internet connection to access these help files if the function is available in the current session of R.
 
@@ -171,7 +196,7 @@ Help files contain the following information:
 -	Examples: example code with applications of the function
  
 
-## 3.4 Error and warning messages
+### Error and warning messages
 Where a function or object has not been correctly specified, or their is some mistake in the syntax that has been sent to the console, R will return an error message. These messages are generally informative and include the location of the error.
 
 The most common errors include misspelling functions or objects:
@@ -197,30 +222,37 @@ When working within the R console, if an incomplete command is run, a `+` symbol
 One of the benefits of using RStudio rather than the basic R package is that it will suggest object or function names after typing the first few letters. This avoids spelling mistakes and accidental errors when running code. To accept the suggestion, either click the correct choice with your mouse or use the `tab` button on your keyboard.
 
 
-## 3.5 Cleaning the environment
+### Cleaning the environment
 To remove objects from the RStudio environment, we can use the `rm` function. This can be combined with the `ls()` function, which lists all objects in the environment, to remove all objects currently loaded:
 
 ```{r remove everything, eval = FALSE}
 rm(list = ls())
 ```
 
-**WARNING!** There are no undo and redo buttons for R syntax. The `rm` function will permanently delete objects from the environment. The only way to reverse this is to re-run the code that created the objects originally from the script file.
+:::{.callout-warning} 
+There are no undo and redo buttons for R syntax. The `rm` function will permanently delete objects from the environment. The only way to reverse this is to re-run the code that created the objects originally from the script file.
+:::
 
-
-## 3.6 R packages
+### R packages
 R packages are a collection of functions and datasets developed by R users that expand existing R capabilities or add completely new ones. Packages allow users to apply the most up-to-date methods shortly after they are developed, unlike other statistical software packages that require an entirely new version. 
 
 
-### 3.6.1 Installing packages from CRAN
+#### Installing packages from CRAN
 The quickest way to install a package in R is by using the `install.packages` function. This sends RStudio to the online repository of tested and verified R packages (known as [CRAN](https://cran.r-project.org/)) and downloads the package files onto the machine you are currently working from in temporary files. Ensure that the package you wish to install is spelled correctly and surrounded by `''`.
 
-**WARNING:** The `install.packages` function requires an internet connection, and can take a long time if the package has a lot of dependent packages that also need downloading. 
+:::{.callout-warning} 
+The `install.packages` function requires an internet connection, and can take a long time if the package has a lot of dependent packages that also need downloading. 
 
 This process should only be carried out the first time a package is used on a machine, or when a substantial update has taken place, to download the latest version of the package.
+:::
 
-### 3.6.2 Loading packages to an R session
+#### Loading packages to an R session
 Every time a new session of RStudio is opened, packages must be reloaded. To load a package into R (and gain access to the associated functions and data), use the `library` function. 
 
 Loading a package does not require an internet connection, but will only work if the package has already been installed and saved onto the computer you are working from. If you are unsure, use the function `installed.packages` to return a list of all packages that are loaded onto the machine you are working from.
 
-**Top tip:** Add your `library` function at the beginning of your script file. This reminds you to re-load packages when opening a new R session, and reduces the chance of error messages from functions requiring these packages.
+:::{.callout-tip}
+### Style tip
+
+Add your `library` function at the beginning of your script file. This reminds you to re-load packages when opening a new R session, and reduces the chance of error messages from functions requiring these packages.
+:::

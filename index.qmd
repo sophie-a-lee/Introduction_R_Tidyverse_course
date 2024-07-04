@@ -1,0 +1,23 @@
+# Welcome!
+
+Welcome to the course materials for the **Introduction to R with Tidyverse** course. 
+
+This course is designed to equip you with the essential skills to leverage the power of R and Tidyverse for their work. The course begins with a gentle introduction to the user-friendly RStudio interface and the basics of the R coding language, or syntax. This makes it ideal for anyone with little or no prior coding experience, or those looking for a refresher of the basics.
+
+Through this course, you will learn how to manipulate, transform, and clean data efficiently, and how to create compelling visualisations to communicate your findings effectively. Throughout the course, we will discuss best practices for reproducible coding. 
+
+:::{.callout-tip}
+# Style tip
+
+Throughout these notes, you will also see boxes like this containing 'style tips'. These ensure that your code follows the [Tidyverse style guide](https://style.tidyverse.org/), making it as consistent and readable as possible.
+:::
+
+## Data used for the course
+The examples and exercises in these materials are based on real world data. This data relates to the Core Spending Power (CSP) of English local authorities between 2015 and 2020.
+
+Data for this course can be downloaded from the `data` folder of this course's [repository](https://github.com/sophie-a-lee/Introduction_R_Tidyverse_course).
+
+For more information about this data, including variable descriptions and sources, see [the appendix](data_description.qmd).
+
+## License
+I believe that science should not be behind a paywall, that is why these materials are available for free online, licensed under a [CC BY-SA licence](https://creativecommons.org/licenses/by-sa/4.0/).

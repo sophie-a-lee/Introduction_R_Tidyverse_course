@@ -1,26 +1,4 @@
----
-title: "Introduction to R with Tidyverse"
-subtitle: "Session 4: Data visualisation with ggplot2"
-author: "Sophie Lee"
-fontfamily: lmodern
-output:   
-  pdf_document:
-    highlight: tango
-    toc: TRUE
-    latex_engine: xelatex
-    fig_height: 4
-    fig_width: 6
-    fig_caption: FALSE
-header-includes:
-    - \usepackage{setspace}\onehalfspacing
-    - \setlength{\parskip}{12pt}
-fontsize: 12pt    
-mainfont: Cambria
-sansfont: Cambria
-linkcolor: blue
-url_color: blue
----
-
+# Session 4: Data visualisation with ggplot2
 
 ```{r setup, include=FALSE}
 pacman::p_load(flextable, tidyverse)
@@ -30,13 +8,12 @@ knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, message = FALSE)
 csp_2020 <- read_csv("data/CSP_2020.csv")
 csp_long2 <- read_csv("data/CSP_long_201520.csv")
 ```
-\newpage
 
-# Chapter 6: Data visualisation with ggplot2
+## Data visualisation with ggplot2
 
 Data visualisation is a powerful tool with multiple important uses. First, visualisations allow us to explore the data, identify potential outliers and errors, or check that the variables behave in the way we would expect them to if they had been recorded correctly. Visualisations can also be used as an analysis tool, allowing us to identify trends in the data or differences between groups. Finally, visualisations can help to convey messages to an audience in a clear, concise way that is often more powerful than presenting them using numbers or text. In some cases, data visualisations can show results so clearly that further analysis is arguably unnecessary. 
 
-## 6.1 Choosing the most appropriate visualisation
+### Choosing the most appropriate visualisation
 
 The most appropriate choice of visualisation will depend on the type of variable(s) we wish to display, the number of variables and the message we are trying to disseminate. Common plots used to display combinations of different types of data are given in following table: 
 
@@ -83,6 +60,8 @@ flextable(vis_tab) %>%
 
 R is very flexible when it comes to visualising data and contains a wide variety of options to customise graphs. This section will focus on the Tidyverse package `ggplot2` and introduce some of the more commonly used graphical functions and parameters but is by no means comprehensive. 
 
+### The ggplot2 package
+
 The `ggplot2` package implements the ‘grammar of graphics’, a system that aims to describe all statistical graphics in terms of their components or layers. All graphics can be broken down into the same components: the data, a coordinate system (or plot area) and some visual markings of the data. More complex plots may have additional layers but all must contain these three. 
 
 For example, in the `csp_2020` dataset, we may wish to explore the relationship between the settlement funding assessment (`sfa_2020`) and council tax total (`ct_total_2020`) spending for each local authority. To visualise the relationship between two continuous numeric variables, a **scatterplot** would be most appropriate. 
@@ -97,14 +76,16 @@ To add information to this graph, we add a **geom** layer: a visual representati
 
 Each geom object must contain a mapping argument, coupled with the `aes` function which defines how the variables in the dataset are visualised. In this case, we use the `aes` function to specify the variables on the x and y axes but it can also be used to set the colour, size or symbol based on variable values. 
 
+:::{.callout-warning} 
+Although `ggplot2` is a tidyverse package, it uses a different method of piping to the  other packages. Use the `+` symbol to add an extra layer when working in `ggplot`.
+:::
+
 ```{r Scatterplot SFA and CT total 2020}
 # Generate the chart area and specify the data
 ggplot(data = csp_2020) + 
   # Add points, defined by sfa_2020 and ct_total_2020 
   geom_point(mapping = aes(x = sfa_2020, y = ct_total_2020))
 ```
-
-**NOTE:** Although `ggplot2` is a tidyverse package, it uses a different method of piping to the  other packages. Use the `+` symbol to add an extra layer when working in `ggplot`.
 
 The resulting scatterplot shows a positive association between the SFA and council tax spending in English local authorities during 2020. We can identify an outlier in the top right corner of the graph. Before proceding, we want to ensure that this observation is an outlier and not an error to be removed from the data. We can use the `filter` function to return the name of the local authority that matches these values:
 
@@ -151,7 +132,7 @@ sfa_ct_plot <- csp_2020 %>%
 ggsave(sfa_ct_plot, filename = "sfa_ct_plot.png")
 ```
 
-## Exercise 5
+### Exercise 5 {.unnumbered}
 1.	Create a new data object containing the 2020 CSP data without the Greater London Authority observation. Name this data frame `csp_nolon_2020`.
 2.	Using the `csp_nolon_2020` data, create a data visualisation to check the distribution (or shape) of the SFA variable.
 3.	Based on the visualisation above, create a summary table for the SFA variable containing the minimum and maximum, and appropriate measures of the centre/average and spread.
@@ -162,7 +143,7 @@ csp_nolon_2020 <- csp_2020 %>%
 ```
 
 
-## 6.2 Customising visualisations
+### Customising visualisations
 Additional variables can be included into a visualisation within the mapping argument of a `geom` function. For example, we could explore the relationship between SFA and council tax across regions by colouring points based on the region:
 
 ```{r Scatterplot, SFA and council tax by region}
@@ -183,9 +164,19 @@ ggplot(data = csp_nolon_2020_new) +
   geom_point(aes(x = sfa_2020, y = ct_total_2020, colour = region_fct))
 ```
 
-Other aesthetic mapping options that can be used to visualise other variable(s) within the same plot include `shape`, which changes the symbol based on a category, `size`, which sets the size of each point to the numerical value of a variable, and `alpha`, which sets the transparency of each point based on a numerical value. These can be combined to visualise more than three variables in the same graph.
+Arguments that can be adjusted within geoms include:
 
-**WARNING:** Although it may be tempting to add many variables to the same visualisation, be sure that you are not overcomplicating the graph and losing important messages. It is better to have multiple, clear but simpler visualisations, than fewer confusing ones.
+- `colour`: change the colour (if point or line) or outline (if bar or histogram) of the markings
+- `size`: change the size of the markings (if point used)
+- `shape`: change the shape of markings (for points)
+- `fill`: Change the colour of bars in bar charts or histograms
+- `linewidth`: Change the line width
+- `linetype`: Choose the type of line (e.g. `dotted`)
+- `alpha`: Change the transparency of a visualisation
+
+:::{.callout-warning}
+Although it may be tempting to add many variables to the same visualisation, be sure that you are not overcomplicating the graph and losing important messages. It is better to have multiple, clear but simpler visualisations, than fewer confusing ones.
+:::
 
 Aesthetic properties of the geom object may also be set manually, outside of the `aes` function, using the same argument but with a shared value rather than a variable. For example:
 
@@ -197,7 +188,8 @@ ggplot(csp_nolon_2020_new) +
              colour = "blue")
 ```
 
-## Exercise 6
+### Exercise 6 {.unnumbered}
+
 1. What is the problem with the following code? Fix the code to change the shape of all the points.
 
 ```{r aesthetic exercise, eval = FALSE}
@@ -209,9 +201,10 @@ ggplot(csp_nolon_2020) +
 
 3.	Add a line of best fit for each region (hint: make each line a different colour).
 
-## 6.3 Scale functions
 
-### 6.3.1 Customising axes
+### Scale functions
+
+#### Customising axes
 Scale functions allow us to customise aesthetics defined in geom objects such as colours and axes labels. They take the form `scale_'aesthetic to customise'_'scale of variable’`. For example, `scale_x_continuous` customises the x axis when the variable is continuous, and `scale_x_discrete` can be used where the variable is discrete or categorical. Arguments to customise the x or y axes include:
 
 - `name = ` to change the axis title
@@ -250,12 +243,17 @@ ggplot(csp_nolon_2020_new) +
 
 We can now clearly see the strong positive association between SFA and council tax spending in local authorities with lower values of this without losing any information. 
 
-### 6.3.2 Customising colour scales
+#### 6.3.2 Customising colour scales
 There are a wide range of options for customising the colour aesthetics of geoms. These include pre-defined colour palettes, such as `scale_colour_viridis_c` for continuous variables, or `scale_colour_viridis_d` for discrete or categorical variables. Viridis colour palettes are designed to be colourblind friendly and print well in grey scale. There are also many R packages containing colour palettes for different scenarios. 
 
 Colour palettes can be created manually for categorical variables using the `scale_colour_manual` function. Here, the argument `values` allows us to specify a colour per category. 
 
-R contains a list of 657 pre-programmed colours that can be used to create palettes (run `colours()` in the console for a full list). Hexadecimal codes can also be included instead in the form ```#rrggbb``` (where rr (red), gg (green), and bb (blue) are numbers between 00 and 99 giving the level of intensity of each colour). 
+:::{.callout-tip}
+### Style tip
+R contains a list of 657 pre-programmed colours that can be used to create palettes (run `colours()` in the console for a full list). 
+
+Hexadecimal codes can also be included instead in the form ```#rrggbb``` (where rr (red), gg (green), and bb (blue) are numbers between 00 and 99 giving the level of intensity of each colour). 
+:::
 
 Where a colour palette will be used across multiple plots, defining this list of colours as a vector and then entering this into `scale_colour_manual` will reduce repetition:
 
@@ -273,7 +271,7 @@ ggplot(csp_nolon_2020_new) +
 
 Palettes can also be created using gradients with the `scale_colour_gradient` function, that specifies a two colour gradient from low to high, `scale_colour_gradient2` that creates a diverging gradient using low, medium, and high colours, and `scale_colour_gradientn` that creates an n-colour gradient.
 
-## 6.4 Other labelling functions
+### Other labelling functions
 
 Although axis and legend labels can be updated within scale functions, the `labs` function exist as an alternative. This function also allows us to add titles and subtitles to visualisations:
 
@@ -297,9 +295,13 @@ annotate(“rect”, xmin = 0, xmax = 10, ymin = 20, ymax = 50, alpha = 0.2)
 
 adds a rectangle to the graph. 
 
-## 6.5 Theme functions
+### Theme functions
 
 The `theme` function modifies non-data components of the visualisation. For example, the legend position, label fonts, the graph background, and gridlines. There are many options that exist within the `theme` function (use `?theme` to list them all). 
+
+:::{.callout-note}
+Many of the elements that can be customised within the `theme` function require an `element` wrapper. This wrapper is determined by the type of object we are customising (e.g. `element_text` when customising text, `element_rect` when customising a background, `element_blank` to remove something). Check `?theme` for more information.
+:::
 
 One of the most common theme options is `legend.position` which can be used to move the legend to the top or bottom of the graph space (`legend.position = “top”` or `legend.position = “bottom”`) or remove the legend completely (`legend.position = “none”`). 
 
@@ -345,7 +347,7 @@ ggplot(csp_nolon_2020_new) +
 
 Creating a custom theme is useful to ensure all visualisations are formatted consistently. 
 
-## 6.6 Facet functions
+### Facet functions
 
 Faceting allows us to divide a plot into subplots based on some grouping variable within the data. This allows us to show multiple variables in the same visualisation without risking overloading the plot and losing the intended message. 
 
@@ -370,6 +372,6 @@ csp_long2 %>%
   theme_intro_course()
 ```
 
-## Exercise 7
+### Exercise 7 {.unnumbered}
 
 Use an appropriate data visualisation to show how the total spend in each local authority has changed over the years between 2015 and 2020. Choose a visualisation that shows these trends over time and allows us to compare them between regions.  

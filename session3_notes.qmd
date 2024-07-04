@@ -1,35 +1,13 @@
----
-title: "Introduction to R with Tidyverse"
-subtitle: "Session 3: Data preparation and manipulation"
-author: "Sophie Lee"
-fontfamily: lmodern
-output:   
-  pdf_document:
-    highlight: tango
-    toc: TRUE
-    latex_engine: xelatex
-    fig_height: 4
-    fig_width: 6
-    fig_caption: FALSE
-header-includes:
-    - \usepackage{setspace}\onehalfspacing
-    - \setlength{\parskip}{12pt}
-fontsize: 12pt    
-mainfont: Cambria
-sansfont: Cambria
-linkcolor: blue
-url_color: blue
----
+# Session 3: Data preparation and manipulation
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = FALSE, message = FALSE)
 library(tidyverse)
 ```
-\newpage
 
-# Chapter 5: Data wrangling and summarising
+## Data wrangling and summarising
 
-## 5.1 Combining two datasets
+### Combining two datasets
 We may need to combine data from different files within R to perform an analysis. For example, in our case we have the core spending power for each year between 2015 and 2020. If our analysis required comparing this spending over the time period, we would need to combine these files together.
 
 Before the data can be combined, it must be loaded into R. We will begin combining data from 2015 and 2016, then extend this to the entire period. 
@@ -58,7 +36,7 @@ csp_201516 <- full_join(CSP_2015, CSP_2016,
                         by = c("ons_code", "authority", "region"))
 ```
 
-## 5.2 Joining multiple datasets
+### Joining multiple datasets
 R's joining functions can only be applied to two datasets at a time. To combine all 6 core spending power datasets from 2015 to 2020 in this way would require a lot of repetitive coding (which we want to avoid where necessary). 
 
 An alternative approach would be to automate this process by using **functional programming**, implemented using tidyverse's `purrr` package.
@@ -93,7 +71,7 @@ csp_201520 <- list.files(path = "data", pattern = "CSP_20") %>%
   reduce(full_join, by = c("ons_code", "authority", "region"))
 ```
 
-## 5.3 Transforming data
+### Transforming data
 
 The dataset containing core spending power in England between 2015 and 2020 is currently in what is known as **wide format**. This means there is a variable per measure per year, making the object very wide. 
 
@@ -148,7 +126,7 @@ write_csv(csp_long2, file = "data/CSP_long_201520.csv")
 ```
 
 
-## 5.4 Summary tables
+### Summary tables
 Summary tables can be created using the `summarise` function. This returns tables in a tibble format, meaning they can easily be customised and exported as CSV files (using the `write_csv` function). 
 
 The `summarise` function is set up similarly to the `mutate` function: summaries are listed and given variable names, separated by a comma. The difference between these functions is that `summarise` collapses the tibble into a single summary row, and the new variables must be created using a summary function.
@@ -204,10 +182,11 @@ csp_long2 %>%
 
 ```
 
-**WARNING:** Whenever using `group_by`, make sure to `ungroup` the data before proceeding. The grouping structure can be large and slow analysis down, or may interact with other functions to produce unexpected analyses.
+:::{.callout-warning}
+Whenever using `group_by`, make sure to `ungroup` the data before proceeding. The grouping structure can be large and slow analysis down, or may interact with other functions to produce unexpected analyses.
+:::
 
-
-## Exercise 4
+### Exercise 4 {.unnumbered}
 
 1.	Create a data frame with the minimum, maximum and median total spend per year for each region. 
 2.	Produce a frequency table containing the number and percentage of local authorities in each region.
