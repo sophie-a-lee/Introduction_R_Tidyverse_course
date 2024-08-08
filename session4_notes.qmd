@@ -243,7 +243,7 @@ ggplot(csp_nolon_2020_new) +
 
 We can now clearly see the strong positive association between SFA and council tax spending in local authorities with lower values of this without losing any information. 
 
-#### 6.3.2 Customising colour scales
+#### Customising colour scales
 There are a wide range of options for customising the colour aesthetics of geoms. These include pre-defined colour palettes, such as `scale_colour_viridis_c` for continuous variables, or `scale_colour_viridis_d` for discrete or categorical variables. Viridis colour palettes are designed to be colourblind friendly and print well in grey scale. There are also many R packages containing colour palettes for different scenarios. 
 
 Colour palettes can be created manually for categorical variables using the `scale_colour_manual` function. Here, the argument `values` allows us to specify a colour per category. 

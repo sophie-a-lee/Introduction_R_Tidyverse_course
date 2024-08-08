@@ -4,8 +4,12 @@ project:
 book:
   title: "Introduction to R with Tidyverse"
   author: "Sophie Lee"
-  date: "07/15/2024"
-  downloads: [pdf]
+  date: 2024-08-08
+  downloads: [pdf]  
+  search: true
+  sidebar:
+    collapse-level: 1
+    style: docked
   navbar:
     right: 
       - icon: github
@@ -33,7 +37,9 @@ book:
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: pulse
+      dark: darkly
   pdf:
     documentclass: scrreprt
 

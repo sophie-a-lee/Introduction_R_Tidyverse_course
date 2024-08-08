@@ -23,9 +23,7 @@ The screenshot below shows the RStudio interface which comprises of four windows
 
 All analysis and actions in R are carried out using the R syntax language. R script files allow you to write and edit code before running it in the console window. 
 
-:::{.callout-tip}
-### Style tip
-
+:::{.callout-stylish}
 Limit script files to 80 characters per line to ensure it is readable. 
 
 RStudio has an option to add a margin that makes this easier to adhere to. Under the *Tools* drop-down menu, select *Global options*. Select *Code* from the list on the right, then under the *Display* tab, tick the *Show margin* box.
@@ -76,9 +74,7 @@ Any text written in the R console or script file can be treated the same as text
 
 When creating script files, it is important to ensure they are clear and easy to read. Comments can be added to script files using the `#` symbol. R will ignore any text following the `#` on the same line. 
 
-::: {.callout-tip}
-### Style tip
-
+::: {.callout-stylish}
 Combining `#` and `-` creates sections within a script file, making them easier to navigate and organise. 
 
 For example:
@@ -105,9 +101,7 @@ The choice of brackets in R coding is particularly important as they all have di
 
 All standard notation for mathematical calculations (`+`, `-`, `*`, `/`, `^`, etc.) are compatible with R. At its simplest level, R is just a very powerful calculator!
 
-::: {.callout-tip}
-### Style tip
-
+::: {.callout-stylish}
 Although R will work whether a space is added before/after a mathematical operator, the [style guide](https://style.tidyverse.org/syntax.html) recommends to add them surrounding most mathematical operations (`+`, `-`, `*`, `/`), but not around `^`. 
 
 For example:
@@ -137,9 +131,7 @@ When you have finished this exercise, select the entire script file (using `ctrl
 ### Objects
 One of the main advantages to using R over other software packages such as SPSS is that more than one dataset can be accessed at the same time. A collection of data stored in any format within the R session is known as an **object**. Objects can include single numbers, single variables, entire datasets, lists of datasets, or even tables and graphs.
 
-:::{.callout-tip}
-### Style tip
-
+:::{.callout-stylish}
 Object names should only contain lower case letters, numbers and `_` (instead of a space to separate words). The should be meaningful and concise.
 :::
 
@@ -151,9 +143,7 @@ object_1 <- 81
 
 Creates an object in the environment named `object_1`, which takes the value `81`. This will appear in the environment window of the console (window C from the interface shown earlier).
 
-:::{.callout-tip}
-### Style tip
-
+:::{.callout-stylish}
 Although both work, use `<-` for assignment, not `=`.
 :::
 
@@ -251,8 +241,6 @@ Every time a new session of RStudio is opened, packages must be reloaded. To loa
 
 Loading a package does not require an internet connection, but will only work if the package has already been installed and saved onto the computer you are working from. If you are unsure, use the function `installed.packages` to return a list of all packages that are loaded onto the machine you are working from.
 
-:::{.callout-tip}
-### Style tip
-
+:::{.callout-stylish}
 Add your `library` function at the beginning of your script file. This reminds you to re-load packages when opening a new R session, and reduces the chance of error messages from functions requiring these packages.
 :::

@@ -62,7 +62,7 @@ When creating a new project, we must choose whether we want to create a new dire
 Have a clear order to your analysis folder. Consider creating separate folders within a project for input and output data, documentation, and outputs such as graphs or tables.
 :::
 
-## 4.3 Data input
+## Data input
 
 To ensure our code is collaborative and reproducible, we should strive to store data in formats that can be used across multiple platforms. One of the best ways to do this is to store data as a comma-delimited file (.csv). CSV files can be opened by a range of different softwares (including R, SPSS, STATA and excel), and base R can be used to open these files without requiring additional packages. 
 

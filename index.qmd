@@ -6,9 +6,7 @@ This course is designed to equip you with the essential skills to leverage the p
 
 Through this course, you will learn how to manipulate, transform, and clean data efficiently, and how to create compelling visualisations to communicate your findings effectively. Throughout the course, we will discuss best practices for reproducible coding. 
 
-:::{.callout-tip}
-# Style tip
-
+:::{.callout-icon}
 Throughout these notes, you will also see boxes like this containing 'style tips'. These ensure that your code follows the [Tidyverse style guide](https://style.tidyverse.org/), making it as consistent and readable as possible.
 :::
 
