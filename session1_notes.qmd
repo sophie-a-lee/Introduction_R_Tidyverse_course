@@ -23,10 +23,20 @@ The screenshot below shows the RStudio interface which comprises of four windows
 
 All analysis and actions in R are carried out using the R syntax language. R script files allow you to write and edit code before running it in the console window. 
 
-:::{.callout-stylish}
+:::{.stylebox}
+
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 Limit script files to 80 characters per line to ensure it is readable. 
 
 RStudio has an option to add a margin that makes this easier to adhere to. Under the *Tools* drop-down menu, select *Global options*. Select *Code* from the list on the right, then under the *Display* tab, tick the *Show margin* box.
+::::
+
 :::
 
 If this window is not visible, create a new script file using *File -> New File -> R Script* from the drop-down menus or clicking the ![New file icon](images/new_file_shortcut.png) icon above the console and selecting *R Script*. This will open a new, blank script file. More than one script file can be open at the same time.
@@ -35,12 +45,20 @@ Code entered into the script file does not run automatically. To run commands fr
 
 The main advantage of using the script file rather than entering the code directly into the console is that it can be saved, edited and shared. To save a script file, use *File -> Save As…* from the drop down menu, or click the ![save icon](images/save_shortcut.png) icon at the top of the window. It is important to save the script files at regular intervals to avoid losing work. Once the script file has been saved, we can also use the keyboard shortcuts `Ctrl + s` on Windows and `Command + s` on Mac to save the latest script file.
 
-:::{.callout-tip}
-### Style tip
+:::{.stylebox}
 
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 Script file names should be meaningful, lower case, and end in `.R`. Avoid using special characters in file names, including spaces. Use `_` instead of spaces.
 
 Where files should be run in a specific order, prefix the file name with numbers.
+::::
+
 :::
 
 Past script files can be opened using *File -> Open File…* from the drop-down menu or by clicking the ![open icon](images/open_shortcut.png) icon and selecting a `.R` file. The keyboard shortcut to open an existing script file is `Ctrl + o` on Windows, and `Command + o` on Macs.
@@ -61,6 +79,16 @@ This window lists all data and objects currently loaded into R. More details on 
 
 This window has many potential uses: graphics are displayed and can be saved from here, and R help files will appear here. This window is only available in the RStudio interface and not in the basic R package.
 
+### Interface appearance
+To change the appearance of the interface window, including font size and background colour, select `Global options` under the `Tools` drop-down menu and select the Appearance tab.
+
+![](images/appearance.png){fig-align="center" width=500 height=500}
+
+The font size is 14 by default but can be changed using the associated drop-down menu. 
+
+There are also a list of editor themes that can be applied, including themes with dark backgrounds and light writing such as `cobalt` or `dracula`.
+
+When you are happy with the preview on the right side of the window, select OK and RStudio will apply the changes.
 
 ### Exercise 1 {.unnumbered}
 1.	Open a new script file if you have not already done so.
@@ -74,7 +102,15 @@ Any text written in the R console or script file can be treated the same as text
 
 When creating script files, it is important to ensure they are clear and easy to read. Comments can be added to script files using the `#` symbol. R will ignore any text following the `#` on the same line. 
 
-::: {.callout-stylish}
+:::{.stylebox}
+
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 Combining `#` and `-` creates sections within a script file, making them easier to navigate and organise. 
 
 For example:
@@ -84,6 +120,8 @@ For example:
 
 # Tidy data ----------
 ```
+::::
+
 :::
 
 
@@ -101,7 +139,15 @@ The choice of brackets in R coding is particularly important as they all have di
 
 All standard notation for mathematical calculations (`+`, `-`, `*`, `/`, `^`, etc.) are compatible with R. At its simplest level, R is just a very powerful calculator!
 
-::: {.callout-stylish}
+:::{.stylebox}
+
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 Although R will work whether a space is added before/after a mathematical operator, the [style guide](https://style.tidyverse.org/syntax.html) recommends to add them surrounding most mathematical operations (`+`, `-`, `*`, `/`), but not around `^`. 
 
 For example:
@@ -115,6 +161,8 @@ For example:
 1959-683
 (351+457)^2 - (213 + 169) ^ 2
 ```
+::::
+
 :::
 
 ### Exercise 2 {.unnumbered}
@@ -131,8 +179,18 @@ When you have finished this exercise, select the entire script file (using `ctrl
 ### Objects
 One of the main advantages to using R over other software packages such as SPSS is that more than one dataset can be accessed at the same time. A collection of data stored in any format within the R session is known as an **object**. Objects can include single numbers, single variables, entire datasets, lists of datasets, or even tables and graphs.
 
-:::{.callout-stylish}
+:::{.stylebox}
+
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 Object names should only contain lower case letters, numbers and `_` (instead of a space to separate words). The should be meaningful and concise.
+::::
+
 :::
 
 Objects are defined in R using the `<-` or `=` symbols. For example, 
@@ -143,9 +201,20 @@ object_1 <- 81
 
 Creates an object in the environment named `object_1`, which takes the value `81`. This will appear in the environment window of the console (window C from the interface shown earlier).
 
-:::{.callout-stylish}
+:::{.stylebox}
+
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 Although both work, use `<-` for assignment, not `=`.
+::::
+
 :::
+
 
 To retrieve an object, type its name into the script or console and run it. This object can then be included in functions or operations in place of the value assigned to it:
 
@@ -241,6 +310,16 @@ Every time a new session of RStudio is opened, packages must be reloaded. To loa
 
 Loading a package does not require an internet connection, but will only work if the package has already been installed and saved onto the computer you are working from. If you are unsure, use the function `installed.packages` to return a list of all packages that are loaded onto the machine you are working from.
 
-:::{.callout-stylish}
+:::{.stylebox}
+
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 Add your `library` function at the beginning of your script file. This reminds you to re-load packages when opening a new R session, and reduces the chance of error messages from functions requiring these packages.
+::::
+
 :::

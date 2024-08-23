@@ -21,6 +21,9 @@ book:
       - icon: twitter
         href: https://x.com/SophieStats10
         aria-label: Twitter
+      - icon: linkedin
+        href: https://www.linkedin.com/in/sophie-a-lee/
+        aria-label: LinkedIn
       - icon: cup-hot
         href: https://buymeacoffee.com/sophie_a_lee
         aria-label: Buy me a coffee
@@ -38,7 +41,7 @@ book:
 format:
   html:
     theme:
-      light: pulse
+      light: [pulse, style.scss]
       dark: darkly
   pdf:
     documentclass: scrreprt

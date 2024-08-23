@@ -248,11 +248,20 @@ There are a wide range of options for customising the colour aesthetics of geoms
 
 Colour palettes can be created manually for categorical variables using the `scale_colour_manual` function. Here, the argument `values` allows us to specify a colour per category. 
 
-:::{.callout-tip}
-### Style tip
+:::{.stylebox}
+
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 R contains a list of 657 pre-programmed colours that can be used to create palettes (run `colours()` in the console for a full list). 
 
 Hexadecimal codes can also be included instead in the form ```#rrggbb``` (where rr (red), gg (green), and bb (blue) are numbers between 00 and 99 giving the level of intensity of each colour). 
+::::
+
 :::
 
 Where a colour palette will be used across multiple plots, defining this list of colours as a vector and then entering this into `scale_colour_manual` will reduce repetition:

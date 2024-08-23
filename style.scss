@@ -1,0 +1,94 @@
+/*-- scss:defaults --*/
+$background-body: #fff1db;
+$link-body: #3AA6B9;
+$text-body: #102c57;
+$background-header: #8e3e63;
+$text-header: #EEEDEB;
+
+$background-code: #FFF5E4;
+$text-code: #43766C;
+$highlight-code: #CD5C08;
+
+$warning-box: #F85525;
+$important-box: #F05A7E;
+$note-box: #125B9A;
+$tip-box: #0B8494;
+
+
+$body-bg: $background-body;
+$body-color: $text-body;
+$headings-color: $text-body !default;
+$popover-header-color: $text-body !default;
+$toast-header-color: $text-body !default;
+$link-color: $link-body;
+
+$code-block-bg: $background-code;
+$code-annotation-higlight-color: $highlight-code;
+$code-block-color: $text-code;
+
+$code-color: $highlight-code;
+$code-bg: $background-code;
+
+$navbar-bg: $background-header;
+$navbar-fg: $text-header;
+
+$callout-color-warning: $warning-box;
+$callout-color-important-box: $important-box;
+$callout-color-note: $note-box;
+$callout-color-tip: $tip-box;
+
+/*-- scss:rules --*/
+
+// Navbar
+
+.navbar {
+  font-size: 12px;
+  border: 2px solid rgba(0, 0, 0, .4);
+}
+
+.stylebox {
+  margin-top: 1em;
+  margin-bottom: 1em;  
+  border-radius: .25rem;
+  border-left: solid #acacac .3rem;
+  border-right: solid 1px silver;
+  border-top: solid 1px silver;
+  border-bottom: solid 1px silver;
+  border-left-color: #B25D91FF !important;
+}
+
+
+.stylebox-icon {
+  height: 0.9rem;
+  width: 0.9rem;
+  display: inline-block;
+  content: "";
+  background-repeat: no-repeat;
+  background-size: 0.9rem 0.9rem;
+  margin-top: .5rem;
+  padding-right: 1.25rem;
+  background-image: url('style-icon.svg');
+}
+
+.stylebox-header {
+  margin-bottom: 0.5em;
+  border-bottom: none;
+  font-weight: 600;
+  opacity: 85%;
+  font-size: 0.9rem;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  display: flex;
+  background-color: #EFC7E6FF;
+  height: 2em;
+  overflow: hidden;
+}
+
+.stylebox
+
+.stylebox-body {
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}

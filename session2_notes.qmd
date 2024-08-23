@@ -35,10 +35,18 @@ Once the tidyverse package is installed, we must load it into the current workin
 library(tidyverse)
 ```
 
-:::{.callout-tip}
-### Style tip
+:::{.stylebox}
 
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 Begin every script file with the `library` command, loading packages in before any data. This avoids any potential errors arising where functions are called before the necessary package has been loaded into the current session.
+::::
+
 :::
 
 ### The working directory
@@ -56,10 +64,18 @@ Projects are created by using the *File -> New project* option from the drop-dow
 
 When creating a new project, we must choose whether we want to create a new directory or use an existing one. Usually, we will have already set up a folder containing data or other documents related to the analysis we plan to carry out. If this is the case, we are using an existing directory and selecting the analysis folder as the project directory.
 
-:::{.callout-tip}
-### Style tip
+:::{.stylebox}
 
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 Have a clear order to your analysis folder. Consider creating separate folders within a project for input and output data, documentation, and outputs such as graphs or tables.
+::::
+
 :::
 
 ## Data input
@@ -89,10 +105,18 @@ Other useful functions that help explore a dataset include:
 names(csp_2020)
 ```
 
-:::{.callout-tip}
-### Style tip
+:::{.stylebox}
 
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 Variable names should follow the same style rules as object names: only contain lower case letters, numbers, and use `_` to separate words. They should be meaningful and concise.
+::::
+
 :::
 
 ```{r structure}
@@ -221,10 +245,18 @@ csp_2020 %>%
   select(authority)
 ```
 
-:::{.callout-tip}
-### Style tips
+:::{.stylebox}
 
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 When combining multiple functions within a process using pipes, it is good practice to start the code with the data and pipe that into the functions, rather than including it in the function itself.
+::::
+
 :::
 
 The pipe can also be combined with the `filter` function to `count` the number of observations that lie within a subgroup:

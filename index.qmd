@@ -6,9 +6,24 @@ This course is designed to equip you with the essential skills to leverage the p
 
 Through this course, you will learn how to manipulate, transform, and clean data efficiently, and how to create compelling visualisations to communicate your findings effectively. Throughout the course, we will discuss best practices for reproducible coding. 
 
-:::{.callout-icon}
+:::{.stylebox}
+
+::::{.stylebox-header}
+:::::{.stylebox-icon}
+:::::
+Style tip
+::::
+
+::::{.stylebox-body}
 Throughout these notes, you will also see boxes like this containing 'style tips'. These ensure that your code follows the [Tidyverse style guide](https://style.tidyverse.org/), making it as consistent and readable as possible.
+::::
+
 :::
+
+## Accessibility options
+These notes are available in dark mode by toggling the ![](images/dark_mode.png) button. 
+
+Notes are also available to download as a PDF file using the ![](images/pdf.png) button.
 
 ## Data used for the course
 The examples and exercises in these materials are based on real world data. This data relates to the Core Spending Power (CSP) of English local authorities between 2015 and 2020.
