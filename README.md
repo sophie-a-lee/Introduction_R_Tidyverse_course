@@ -1,6 +1,6 @@
 # Introduction to R with Tidyverse
 
-Next date: 15 - 16 July via [Institute of Statistics and Data Science](https://instats.org/seminar/introduction-to-r-with-tidyverse-2542)
+Next live course dates: 24 - 26 September via [PR statistics](https://www.prstats.org/course/introduction-to-r-using-tidyverse-tidy01/)
 
 R is a popular open-source programming language used by data scientists, statisticians, social & health researchers, and many more across a wide range of disciplines. R is particularly appealing to researchers as it is free to access, designed to encourage collaborative and reproducible data analysis, and is constantly evolving to include the latest research developments. 
 
