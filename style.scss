@@ -18,6 +18,7 @@ $tip-box: #0B8494;
 $body-bg: $background-body;
 $body-color: $text-body;
 $headings-color: $text-body !default;
+$header-section-number: $text-body !default;
 $popover-header-color: $text-body !default;
 $toast-header-color: $text-body !default;
 $link-color: $link-body;
@@ -91,4 +92,8 @@ $callout-color-tip: $tip-box;
   font-weight: 400;
   padding-left: 0.5em;
   padding-right: 0.5em;
+}
+
+.header-section-number {
+  color: $text-body;
 }

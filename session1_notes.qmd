@@ -4,7 +4,7 @@
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
 ```
 
-## The RStudio interface
+## The RStudio interface 
 
 There are a number of software packages based on the R programming language aimed at making writing and running analyses easier for users. They all run R in the background but look different and contain different features. 
 
