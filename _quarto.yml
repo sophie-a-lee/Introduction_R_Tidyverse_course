@@ -5,7 +5,6 @@ project:
 book:
   title: "Introduction to R with Tidyverse"
   author: "Sophie Lee"
-  date: 2024-08-08
   downloads: [pdf]  
   search: true
   sidebar:
